@@ -27,11 +27,7 @@ class PengaduanController extends CI_Controller
     $data['data_kabupaten'] = $this->Kabupaten_m->get_all()->result_array();
 
     $this->form_validation->set_rules('isi_laporan', 'Isi Laporan Pengaduan', 'trim|required');
-<<<<<<< Updated upstream
-    $this->form_validation->set_rules('foto', 'Foto Pengaduan', 'trim|required');
-=======
     // $this->form_validation->set_rules('foto', 'Foto Pengaduan', 'trim|required');
->>>>>>> Stashed changes
     $this->form_validation->set_rules('kabupaten', "Kabupaten", 'trim|required');
 
     if ($this->form_validation->run() == FALSE) :
@@ -45,11 +41,7 @@ class PengaduanController extends CI_Controller
       $upload_foto = $this->upload_foto('foto'); // parameter nama foto
       if ($upload_foto == FALSE) :
         $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
-<<<<<<< Updated upstream
-          Upload foto pengaduan gagal, hanya png,jpg dan jpeg yang dapat di upload!
-=======
           Bukti harus diisi dan hanya file png, mp4, jpg dan jpeg yang dapat di upload!
->>>>>>> Stashed changes
           </div>');
 
         redirect('Masyarakat/PengaduanController');
@@ -200,11 +192,7 @@ class PengaduanController extends CI_Controller
 
           if ($upload_foto == FALSE) :
             $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
-<<<<<<< Updated upstream
-              Upload foto pengaduan gagal, hanya png,jpg dan jpeg yang dapat di upload!
-=======
             Upload foto pengaduan gagal, hanya png,jpg dan jpeg yang dapat di upload!
->>>>>>> Stashed changes
               </div>');
 
             redirect('Masyarakat/PengaduanController');
