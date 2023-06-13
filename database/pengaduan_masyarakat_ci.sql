@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 09, 2023 at 09:13 AM
--- Server version: 5.7.33
--- PHP Version: 7.4.19
+-- Generation Time: Jun 13, 2023 at 08:48 AM
+-- Server version: 8.0.30
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bukti` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `path` varchar(255) NOT NULL,
-  `id_pengaduan` int(11) NOT NULL
+  `id_pengaduan` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -40,8 +40,9 @@ CREATE TABLE `bukti` (
 INSERT INTO `bukti` (`id`, `path`, `id_pengaduan`) VALUES
 (1, 'f158381b96b131e019fd1d6f3d9da57e.jpg', 12),
 (2, 'c84e4069757743fa8f35c29a74c0d2b2.jpg', 15),
-(3, 'd8695e60c4c69842e4209cbde61a4ced.jpg', 16),
-(8, '8fd647be4d1b8554e1a5f5ecf4c75fb3.jpg', 26);
+(3, 'cac498ca687b949270b761c2f6a78232.mp4', 16),
+(8, '8fd647be4d1b8554e1a5f5ecf4c75fb3.jpg', 26),
+(12, 'e80d34ea525b5894f013b580e756ed45.mp4', 30);
 
 -- --------------------------------------------------------
 
@@ -50,10 +51,10 @@ INSERT INTO `bukti` (`id`, `path`, `id_pengaduan`) VALUES
 --
 
 CREATE TABLE `kabupaten` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `nama` varchar(255) NOT NULL,
   `ibukota` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `kabupaten`
@@ -75,13 +76,9 @@ INSERT INTO `kabupaten` (`id`, `nama`, `ibukota`) VALUES
 --
 
 CREATE TABLE `masyarakat` (
-  `nik` bigint(16) NOT NULL,
-  `nama` varchar(35) NOT NULL,
+  `nik` bigint NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(225) NOT NULL,
-  `telp` varchar(13) NOT NULL,
-  `alamat` varchar(35) NOT NULL,
-  `foto_profile` varchar(225) NOT NULL,
   `is_verified` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -89,9 +86,30 @@ CREATE TABLE `masyarakat` (
 -- Dumping data for table `masyarakat`
 --
 
-INSERT INTO `masyarakat` (`nik`, `nama`, `username`, `password`, `telp`, `alamat`, `foto_profile`, `is_verified`) VALUES
-(12345678918, 'lulu', 'lululala', '$2y$10$J23NNXSjscUHCEHXDkSaTOvbm8gQYRVmMtdqCGPQyJuFeuMfS.hJG', '08111111111', 'PKG', 'user.png', 1),
-(1212345678912354, 'aisyah', 'masyarakat', '$2y$10$BqCVWU56ME/Y.MctVXBw7uI8w26d1gK/HY219JiQWe./ppfYVEeYS', '08131111111', 'pangkal', 'user.png', 1);
+INSERT INTO `masyarakat` (`nik`, `username`, `password`, `is_verified`) VALUES
+(1212345678912354, 'masyarakat', '$2y$10$BqCVWU56ME/Y.MctVXBw7uI8w26d1gK/HY219JiQWe./ppfYVEeYS', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `masyarakat_detail`
+--
+
+CREATE TABLE `masyarakat_detail` (
+  `id` bigint NOT NULL,
+  `nama` varchar(35) NOT NULL,
+  `telp` varchar(13) NOT NULL,
+  `alamat` varchar(35) NOT NULL,
+  `foto_profile` varchar(225) NOT NULL,
+  `id_masyarakat` bigint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `masyarakat_detail`
+--
+
+INSERT INTO `masyarakat_detail` (`id`, `nama`, `telp`, `alamat`, `foto_profile`, `id_masyarakat`) VALUES
+(4, 'aisyah', '123123', 'aasddassdasd', 'foto.png', 1212345678912354);
 
 -- --------------------------------------------------------
 
@@ -100,9 +118,9 @@ INSERT INTO `masyarakat` (`nik`, `nama`, `username`, `password`, `telp`, `alamat
 --
 
 CREATE TABLE `pengaduan` (
-  `id_pengaduan` bigint(16) NOT NULL,
+  `id_pengaduan` bigint NOT NULL,
   `tgl_pengaduan` date NOT NULL,
-  `nik` bigint(16) NOT NULL,
+  `nik` bigint NOT NULL,
   `hubungan` varchar(35) NOT NULL,
   `nama_pelaku` varchar(35) NOT NULL,
   `lokasi_kejadian` varchar(35) NOT NULL,
@@ -110,7 +128,7 @@ CREATE TABLE `pengaduan` (
   `jenis_laporan` varchar(35) NOT NULL,
   `isi_laporan` text NOT NULL,
   `status` enum('Diajukan','Diproses','Selesai','Ditolak') NOT NULL,
-  `id_kabupaten` int(11) NOT NULL
+  `id_kabupaten` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -121,7 +139,8 @@ INSERT INTO `pengaduan` (`id_pengaduan`, `tgl_pengaduan`, `nik`, `hubungan`, `na
 (12, '2023-01-26', 1212345678912354, 'Sodara', 'Amir', 'Palembang', 'Riri', 'Pelecehan Seksual', 'Pelaku memukul korban menggunakan tauge', 'Diproses', 7),
 (15, '2023-01-26', 1212345678912354, 'kawan', 'Tedjo', 'bekasi', 'suasana', 'Kekerasan Dalam Rumah Tangga', 'lupa makan', 'Selesai', 6),
 (16, '2023-02-14', 1212345678912354, 'Teman', 'Budi', 'Pantai', 'Raya', 'Kekerasan Dalam Rumah Tangga', 'Tidak memberikan izin tinggal', 'Diajukan', 5),
-(26, '2023-06-09', 1212345678912354, 'teman', 'Dimas', 'Pantai Kuta', 'Saleh', 'Hak Asuh Anak', 'Jadi awalnya gini', 'Ditolak', 3);
+(26, '2023-06-09', 1212345678912354, 'teman', 'Dimas', 'Pantai Kuta', 'Saleh', 'Hak Asuh Anak', 'Jadi awalnya gini', 'Ditolak', 3),
+(30, '2023-06-12', 1212345678912354, 'Konco', 'Wong Laen', 'Omah', 'Tester', 'Kekerasan Dalam Rumah Tangga', 'Jadi gini......', 'Diajukan', 3);
 
 -- --------------------------------------------------------
 
@@ -130,9 +149,9 @@ INSERT INTO `pengaduan` (`id_pengaduan`, `tgl_pengaduan`, `nik`, `hubungan`, `na
 --
 
 CREATE TABLE `petugas` (
-  `id_petugas` int(11) NOT NULL,
+  `id_petugas` int NOT NULL,
   `nama` varchar(35) NOT NULL,
-  `nik` bigint(16) NOT NULL,
+  `nik` bigint NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(225) NOT NULL,
   `telp` varchar(13) NOT NULL,
@@ -156,10 +175,10 @@ INSERT INTO `petugas` (`id_petugas`, `nama`, `nik`, `username`, `password`, `tel
 --
 
 CREATE TABLE `petugas_kabupaten` (
-  `id` int(11) NOT NULL,
-  `petugas_id` int(11) NOT NULL,
-  `kabupaten_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `petugas_id` int NOT NULL,
+  `kabupaten_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `petugas_kabupaten`
@@ -176,11 +195,11 @@ INSERT INTO `petugas_kabupaten` (`id`, `petugas_id`, `kabupaten_id`) VALUES
 --
 
 CREATE TABLE `tanggapan` (
-  `id_tanggapan` int(11) NOT NULL,
-  `id_pengaduan` bigint(16) NOT NULL,
+  `id_tanggapan` int NOT NULL,
+  `id_pengaduan` bigint NOT NULL,
   `tgl_tanggapan` date NOT NULL,
   `tanggapan` text NOT NULL,
-  `id_petugas` int(11) NOT NULL
+  `id_petugas` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -215,6 +234,13 @@ ALTER TABLE `kabupaten`
 --
 ALTER TABLE `masyarakat`
   ADD PRIMARY KEY (`nik`);
+
+--
+-- Indexes for table `masyarakat_detail`
+--
+ALTER TABLE `masyarakat_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_masyarakat` (`id_masyarakat`);
 
 --
 -- Indexes for table `pengaduan`
@@ -252,43 +278,49 @@ ALTER TABLE `tanggapan`
 -- AUTO_INCREMENT for table `bukti`
 --
 ALTER TABLE `bukti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `kabupaten`
 --
 ALTER TABLE `kabupaten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `masyarakat`
 --
 ALTER TABLE `masyarakat`
-  MODIFY `nik` bigint(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1212345678912355;
+  MODIFY `nik` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1212345678912355;
+
+--
+-- AUTO_INCREMENT for table `masyarakat_detail`
+--
+ALTER TABLE `masyarakat_detail`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id_pengaduan` bigint(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_pengaduan` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_petugas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `petugas_kabupaten`
 --
 ALTER TABLE `petugas_kabupaten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tanggapan`
 --
 ALTER TABLE `tanggapan`
-  MODIFY `id_tanggapan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_tanggapan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
