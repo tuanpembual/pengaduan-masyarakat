@@ -86,12 +86,16 @@
       </a>
       <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
+          <?php // tambah petugas akses ?>
+          <?php if ($this->session->userdata('level') == 'petugas') : ?>
           <h6 class="collapse-header">Tanggapan:</h6>
           <a class="collapse-item" href="<?= base_url('Admin/TanggapanController'); ?>">Pengaduan Masuk</a>
           <a class="collapse-item" href="<?= base_url('Admin/TanggapanController/tanggapan_proses'); ?>">Pengaduan Proses</a>
           <a class="collapse-item" href="<?= base_url('Admin/TanggapanController/tanggapan_tolak'); ?>">Pengaduan Ditolak</a>
           <a class="collapse-item" href="<?= base_url('Admin/TanggapanController/tanggapan_selesai'); ?>">Pengaduan Selesai</a>
           <div class="collapse-divider"></div>
+           <?php endif; ?>
+          <?php // end tanggapan petugas akses ?>
 
           <?php // tambah petugas admin akses ?>
           <?php if ($this->session->userdata('level') == 'admin') : ?>
