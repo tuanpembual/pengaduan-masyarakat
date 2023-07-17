@@ -196,10 +196,10 @@ CREATE TABLE `tanggapan` (
   `id_pengaduan` bigint(16) NOT NULL,
   `tgl_tanggapan` date NOT NULL,
   `tanggapan` text NOT NULL,
-  `id_petugas` int(11) NOT NULL,
+  `id_petugaskab` int(11) NOT NULL,
   PRIMARY KEY (`id_tanggapan`),
   KEY `id_pengaduan` (`id_pengaduan`),
-  KEY `id_petugas` (`id_petugas`)
+  KEY `id_petugaskab` (`id_petugaskab`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
@@ -207,13 +207,9 @@ CREATE TABLE `tanggapan` (
 --
 
 LOCK TABLES `tanggapan` WRITE;
-INSERT INTO `tanggapan` (`id_tanggapan`, `id_pengaduan`, `tgl_tanggapan`, `tanggapan`, `id_petugas`) VALUES
-(19,10,'2023-01-11','oke konfirm',6),
+INSERT INTO `tanggapan` (`id_tanggapan`, `id_pengaduan`, `tgl_tanggapan`, `tanggapan`, `id_petugaskab`) VALUES
 (20,15,'2023-02-14','sedang didalami',6),
 (21,12,'2023-02-14','Sedang dalam proses',6),
-(22,22,'2023-06-19','Baik akan kami proses',6),
-(23,23,'2023-06-19','Deskripsi kurang jelas.',6),
-(24,16,'2023-06-19','Diterima, pengaduan akan diproses',2),
 (25,27,'2023-06-19','Deskripsi kurang lengkap',2);
 UNLOCK TABLES;
 
