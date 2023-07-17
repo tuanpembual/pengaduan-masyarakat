@@ -118,7 +118,7 @@ CREATE TABLE `pengaduan` (
   `id_kabupaten` int(11) NOT NULL,
   PRIMARY KEY (`id_pengaduan`),
   KEY `nik` (`nik`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengaduan`
@@ -126,10 +126,7 @@ CREATE TABLE `pengaduan` (
 
 LOCK TABLES `pengaduan` WRITE;
 INSERT INTO `pengaduan` VALUES 
-(12,'2023-01-26',1212345678912354,'Sodara','Amir','Palembang','Riri','Pelecehan Seksual','Pelaku memukul korban menggunakan tauge','f158381b96b131e019fd1d6f3d9da57e.jpg','Selesai',7),
-(15,'2023-01-26',1212345678912354,'kawan','Tedjo','bekasi','suasana','Kekerasan Dalam Rumah Tangga','lupa makan','c84e4069757743fa8f35c29a74c0d2b2.jpg','Diproses',6),
-(16,'2023-02-14',1212345678912354,'Teman','Budi','Pantai','Raya','Kekerasan Dalam Rumah Tangga','Tidak memberikan izin tinggal','d8695e60c4c69842e4209cbde61a4ced.jpg','Diproses',5);
-/*!40000 ALTER TABLE `pengaduan` ENABLE KEYS */;
+(1,'2023-07-17',1212345678912354,'sepupu','Parjo','Jalan Pramuka','Milo','Kekerasan Dalam Rumah Tangga','Tidak memberi nafkah','a6bc971dee560efe89d61a61cec5aa14.jpg','Diajukan',7);
 UNLOCK TABLES;
 
 --
@@ -149,7 +146,7 @@ CREATE TABLE `petugas` (
   `foto_profile` varchar(225) NOT NULL,
   PRIMARY KEY (`id_petugas`),
   UNIQUE KEY `username_petugas` (`username_petugas`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `petugas`
@@ -157,9 +154,8 @@ CREATE TABLE `petugas` (
 
 LOCK TABLES `petugas` WRITE;
 INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `nik_petugas`, `username_petugas`, `password_petugas`, `telp`, `alamat`, `level`, `foto_profile`) VALUES
-(2, 'putri', 3212345678912354, 'admin', '$2y$10$YlpZmz2Uq.RxG5bHvMjYjej5y2AYkEzr9JbDKGHe3sWbpFkVhkury', '08111111111', 'belitong', 'admin', 'user.png'),
-(6, 'amini', 3212345678912352, 'petugas', '$2y$10$SIUNsTMGwDOoXJ62kgoMueorXuuDenxdG0ZKRU1NUigM2Xby0bAmC', '081222222222', 'mentok', 'petugas', 'user.png'),
-(7,'Darsono',0,'darson112','$2y$10$wIHKdPENug2c/.d0yIzYyO3SdsHv0gfBsfV2zQF0eatE1UbVYY49G','082138702811','','petugas','user.png');
+(1, 'putri', 3212345678912354, 'admin', '$2y$10$YlpZmz2Uq.RxG5bHvMjYjej5y2AYkEzr9JbDKGHe3sWbpFkVhkury', '08111111111', 'belitong', 'admin', 'user.png'),
+(2, 'amini', 3212345678912352, 'petugas', '$2y$10$SIUNsTMGwDOoXJ62kgoMueorXuuDenxdG0ZKRU1NUigM2Xby0bAmC', '081222222222', 'mentok', 'petugas', 'user.png');
 UNLOCK TABLES;
 
 --
@@ -174,7 +170,7 @@ CREATE TABLE `petugas_kabupaten` (
   `kabupaten_id` int(11) NOT NULL,
   KEY `petugas_kabupaten_ibfk_1` (`petugas_id`),
   KEY `petugas_kabupaten_ibfk_2` (`kabupaten_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `petugas_kabupaten`
@@ -182,8 +178,7 @@ CREATE TABLE `petugas_kabupaten` (
 
 LOCK TABLES `petugas_kabupaten` WRITE;
 INSERT INTO `petugas_kabupaten` (`id_petugaskab`, `nama_petugaskab`, `petugas_id`, `kabupaten_id`) VALUES
-(2, 'amini', 6, 7),
-(3, 'darsono', 7, 1);
+(1, 'amini', 2, 7);
 UNLOCK TABLES;
 
 --
