@@ -42,8 +42,9 @@ class Petugas_m extends CI_Model {
 			'telp'             => $params['telp'],
 		];
 		$kabupaten_params  = [
-			'petugas_id'   => $params['id'],
-			'kabupaten_id' => $params['kabupaten'],
+			'petugas_id'      => $params['id'],
+			'kabupaten_id'    => $params['kabupaten'],
+			'nama_petugaskab' => $params['nama'],
 		];
 
 		$petugas_result   = $this->db->update('petugas', $petugas_params, ['id_petugas' => $params['id']]);
