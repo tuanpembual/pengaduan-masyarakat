@@ -21,7 +21,17 @@ class Admin_m extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	public function update($data) 
+	{
+		$admin_params = [
+			'nama_admin'     => $data['nama'],
+			'password_admin' => $data['password'],
+		];
+
+		return $this->db->update($this->table, $admin_params, ['id_admin' => $data['id']]);
+	}
+
 }
 
-/* End of file Petugas_m.php */
-/* Location: ./application/models/Petugas_m.php */
+/* End of file Admin_m.php */
+/* Location: ./application/models/Admin_m.php */
