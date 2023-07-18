@@ -185,9 +185,10 @@ public function edit($id)
 	{
 		if (!empty($str)) :
 			$masyarakat = $this->db->get_where('masyarakat',['username' => $str])->row_array();
-			$petugas  = $this->db->get_where('petugas',['username_petugas' => $str])->row_array();
+			$petugas    = $this->db->get_where('petugas',['username_petugas' => $str])->row_array();
+			$admin      = $this->db->get_where('admin', ['username_admin' => $str])->row_array();
 
-			if ($masyarakat == true || $petugas == true) :
+			if ($masyarakat == true || $petugas == true || $admin == true) :
 
 				$this->form_validation->set_message('username_check', 'Username ini sudah terdaftar ada.');
 

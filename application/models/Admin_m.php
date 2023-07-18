@@ -1,10 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Petugas_m extends CI_Model {
+class Admin_m extends CI_Model {
 
 	private $table = 'admin';
 	private $primary_key = 'id_admin';
+
+	public function get_all() 
+	{
+		$this->db->select('*');
+		$this->db->from($this->table);
+		
+		return $this->db->get();
+	}
 
 }
 
