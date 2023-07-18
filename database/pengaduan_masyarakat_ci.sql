@@ -183,7 +183,7 @@ INSERT INTO `petugas_kabupaten` (`id_petugaskab`, `nama_petugaskab`, `petugas_id
 UNLOCK TABLES;
 
 --
--- Table structure for table `tanggapan``
+-- Table structure for table `tanggapan`
 --
 
 DROP TABLE IF EXISTS `tanggapan`;
