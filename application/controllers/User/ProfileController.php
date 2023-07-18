@@ -13,20 +13,24 @@ class ProfileController extends CI_Controller {
 	// List all your items
 	public function index()
 	{
-    $data['title'] = 'Profile';
+    	$data['title'] = 'Profile';
 
-    $masyarakat = $this->db->get_where('masyarakat',['username' => $this->session->userdata('username')])->row_array();
+    	$masyarakat = $this->db->get_where('masyarakat',['username' => $this->session->userdata('username')])->row_array();
+		$petugas    = $this->db->get_where('petugas', ['username_petugas' => $this->session->userdata('username')])->row_array();
+		$admin      = $this->db->get_where('admin', ['username_admin' => $this->session->userdata('username')])->row_array();
+
 		$detail_masyarakat = [];
 		if($masyarakat) {
 			$detail_masyarakat = $this->db->get_where('masyarakat_detail', ['nik_masyarakat' => $masyarakat['nik_masyarakat']])->row_array();
 			$masyarakat = array_merge($masyarakat, $detail_masyarakat);
 		}
-		$petugas = $this->db->get_where('petugas',['username_petugas' => $this->session->userdata('username')])->row_array();
 
 		if ($masyarakat == TRUE) :
 			$data['user'] = $masyarakat;
 		elseif ($petugas == TRUE) :
 			$data['user'] = $petugas;
+		elseif ($admin == TRUE) :
+			$data['user'] = $admin;
 		endif;
 
         $this->load->view('_part/backend_head', $data);

@@ -34,7 +34,8 @@ class LoginController extends CI_Controller {
 	{
 		// cek akun di table masyarakat dan petugas berdasarkan username
 		$masyarakat = $this->db->get_where('masyarakat',['username' => $username])->row_array();
-		$petugas = $this->db->get_where('petugas',['username_petugas' => $username])->row_array();
+		$petugas    = $this->db->get_where('petugas',['username_petugas' => $username])->row_array();
+		$admin      = $this->db->get_where('admin', ['username_admin' => $username])->row_array();
 
 		if ($masyarakat == TRUE) :
 			if (! $masyarakat['is_verified']) :
@@ -79,29 +80,14 @@ class LoginController extends CI_Controller {
 				// jika password benar
 				// maka buat session userdata
 				$session = [
-					'username' 		=> $petugas['username_petugas'],
-					'level'			=> $petugas['level'],
+					'username' => $petugas['username_petugas'],
+					'level'	   => 'petugas',
 				];
 
 				$this->session->set_userdata($session);
+				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert"> Login berhasil! </div>');
 
-				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert">
-					Login berhasil!
-					</div>');
-
-				// cek level petugas
-				if ($petugas['level'] == 'admin') :
-					return redirect('Admin/DashboardController');
-
-				elseif ($petugas['level'] == 'petugas') :
-					return redirect('Admin/DashboardController');
-
-				else :
-					// jika level tidak ada maka Logout
-					// supaya session di hancurkan
-					return redirect('Auth/LogoutController');
-				endif;
-
+				return redirect('User/ProfileController');
 			else :
 				// jika password salah
 				$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">
@@ -110,14 +96,32 @@ class LoginController extends CI_Controller {
 
 				return redirect('Auth/LoginController');
 			endif;
+		elseif ($admin == TRUE) : 
+			// jika akun admin == TRUE
+			// maka buat session userdata
+			if (password_verify($password, $admin['password_admin'])) :
+				$session = [
+					'username' => $admin['username_admin'],
+					'level'    => 'admin'
+				];
 
+				$this->session->set_userdata($session);
+				$this->session->set_flashdata('msg', '<div class="alert alert-primary" role="alert"> Login berhasil! </div>');
+
+				return redirect('User/ProfileController');
+			else :
+				// jika password salah
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert"> Username atau Password salah ! </div>');
+
+				return redirect('Auth/LoginController');
+			endif;
 		else :
 		// tidak ada akun yang di temukan
 			$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">
-				Username atau Password salah! petugas
+				Username atau Password salah!
 				</div>');
-		return redirect('Auth/LoginController');
 
+			return redirect('Auth/LoginController');
 		endif;
 	}
 }
