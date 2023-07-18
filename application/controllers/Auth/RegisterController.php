@@ -60,10 +60,10 @@ class RegisterController extends CI_Controller {
 	{
 		if (!empty($str)) :
 			$masyarakat = $this->db->get_where('masyarakat',['username' => $str])->row_array();
+			$petugas    = $this->db->get_where('petugas',['username_petugas' => $str])->row_array();
+			$admin      = $this->db->get_where('admin', ['username_admin' => $str])->row_array();
 
-			$petugas = $this->db->get_where('petugas',['username_petugas' => $str])->row_array();
-
-			if ($masyarakat == TRUE OR $petugas == TRUE) :
+			if ($masyarakat == TRUE OR $petugas == TRUE OR $admin == TRUE) :
 
 				$this->form_validation->set_message('username_check', 'Username ini sudah terdaftar ada.');
 
