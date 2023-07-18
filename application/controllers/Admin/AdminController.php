@@ -102,7 +102,22 @@ class AdminController extends CI_Controller {
 
 	public function delete($id) 
 	{
-		$id_
+		$id_admin = htmlspecialchars($id);
+		$cek_data = $this->db->get_where('admin', ['id_admin' => $id_admin])->row_array();
+
+		if ( !empty($cek_data) ) :
+			$response = $this->db->delete('admin', ['id_admin' => $id_admin]);
+
+			if ( $response ) :
+				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert"> Akun berhasil dihapus ! </div>');
+			else : 
+				$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"> Akun gagal dihapus ! </div>');
+			endif;
+		else :
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert"> Data tidak ditemukan </div>');
+		endif;
+
+		redirect('Admin/AdminController');
 	}
 
 	public function username_check($str = NULL)
