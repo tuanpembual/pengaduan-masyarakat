@@ -59,7 +59,7 @@ class AdminController extends CI_Controller {
 			$petugas    = $this->db->get_where('petugas',['username_petugas' => $str])->row_array();
 			$admin      = $this->db->get_where('admin', ['username_admin' => $str])->row_array();
 
-			if ($masyarakat == true || $petugas == true $admin == true) :
+			if ($masyarakat == true || $petugas == true || $admin == true) :
 
 				$this->form_validation->set_message('username_check', 'Username ini sudah terdaftar ada.');
 
