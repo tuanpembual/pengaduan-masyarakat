@@ -14,6 +14,13 @@ class Admin_m extends CI_Model {
 		return $this->db->get();
 	}
 
+	public function create($data) 
+	{
+		$this->db->insert($this->table, $data);
+
+		return $this->db->insert_id();
+	}
+
 }
 
 /* End of file Petugas_m.php */

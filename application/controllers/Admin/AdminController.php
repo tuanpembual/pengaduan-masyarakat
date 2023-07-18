@@ -17,8 +17,8 @@ class AdminController extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] 	        = 'Tambah Admin';
-		$data['data_petugas']   = $this->Admin_m->get_all()->result_array();
+		$data['title'] 	    = 'Tambah Admin';
+		$data['data_admin'] = $this->Admin_m->get_all()->result_array();
 
 		$this->form_validation->set_rules('nama','Nama','trim|required|alpha_numeric_spaces');
 		$this->form_validation->set_rules('username','Username','trim|required|alpha_numeric_spaces|callback_username_check');
@@ -42,13 +42,11 @@ class AdminController extends CI_Controller {
 
 			if ($response) :
 				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert"> Buat akun admin berhasil </div>');
-
-				redirect('Admin/PetugasController');
 			else :
 				$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"> Buat akun admin gagal! </div>');
-
-				redirect('Admin/PetugasController');
 			endif;
+
+			redirect('Admin/AdminController');
 		endif;
 	}
 

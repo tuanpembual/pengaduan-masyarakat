@@ -48,7 +48,7 @@
   </thead>
   <tbody>
     <?php $no = 1; ?>
-    <?php foreach ($data_petugas as $dp) : ?>
+    <?php foreach ($data_admin as $dp) : ?>
       <tr>
         <th scope="row"><?= $no++; ?></th>
         <td><?= $dp['nama_admin']; ?></td>
