@@ -15,7 +15,7 @@ class RegisterController extends CI_Controller {
 	{
 		$data['title'] = 'Register';
 
-		$this->form_validation->set_rules('nik','Nik','trim|required|numeric|is_unique[masyarakat.nik]');
+		$this->form_validation->set_rules('nik','Nik','trim|required|numeric|is_unique[masyarakat.nik_masyarakat]');
 		$this->form_validation->set_rules('nama','Nama','trim|required|alpha_numeric_spaces');
 		$this->form_validation->set_rules('username','Username','trim|required|alpha_numeric_spaces|callback_username_check');
 		$this->form_validation->set_rules('password','Password','trim|required|alpha_numeric_spaces|min_length[6]|max_length[15]');
@@ -28,13 +28,13 @@ class RegisterController extends CI_Controller {
 			$this->load->view('_part/login_footer');
 		else :
 			$params = [
-				'nik'			=> htmlspecialchars($this->input->post('nik',TRUE)),
-				'nama'			=> htmlspecialchars($this->input->post('nama',TRUE)),
-				'username'		=> htmlspecialchars($this->input->post('username',TRUE)),
-				'password'		=> password_hash(htmlspecialchars($this->input->post('password',TRUE)), PASSWORD_DEFAULT),
-				'telp'			=> htmlspecialchars($this->input->post('telp',TRUE)),
-				'alamat'		=> htmlspecialchars($this->input->post('alamat', TRUE)),
-				'foto_profile'	=> 'user.png',
+				'nik' => htmlspecialchars($this->input->post('nik',TRUE)),
+				'nama'			 => htmlspecialchars($this->input->post('nama',TRUE)),
+				'username'		 => htmlspecialchars($this->input->post('username',TRUE)),
+				'password'		 => password_hash(htmlspecialchars($this->input->post('password',TRUE)), PASSWORD_DEFAULT),
+				'telp'			 => htmlspecialchars($this->input->post('telp',TRUE)),
+				'alamat'		 => htmlspecialchars($this->input->post('alamat', TRUE)),
+				'foto_profile'   => 'user.png',
 			];
 
 			$resp = $this->Masyarakat_m->create($params);
