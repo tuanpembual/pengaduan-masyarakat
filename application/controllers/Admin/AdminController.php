@@ -96,8 +96,13 @@ class AdminController extends CI_Controller {
 		else :
 			$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"> Data tidak ada </div>');
 
-			redirect('Admin/PetugasController');
+			redirect('Admin/AdminController');
 		endif;
+	}
+
+	public function delete($id) 
+	{
+		$id_
 	}
 
 	public function username_check($str = NULL)
