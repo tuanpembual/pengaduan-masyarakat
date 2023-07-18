@@ -75,40 +75,27 @@ class PetugasController extends CI_Controller {
 	public function delete($id)
 	{
 
-	$id_petugas = htmlspecialchars($id); // id petugas
-	$cek_data   = $this->db->get_where('petugas',['id_petugas' => $id_petugas])->row_array();
+		$id_petugas = htmlspecialchars($id); // id petugas
+		$cek_data   = $this->db->get_where('petugas',['id_petugas' => $id_petugas])->row_array();
 
-	if ( ! empty($cek_data)) :
-		$resp = $this->db->delete('petugas',['id_petugas' => $id_petugas]);
-		if ($cek_data['level'] == 'petugas'):
-			$this->db->delete('petugas_kabupaten', ['petugas_id' => $id_petugas]);
-		endif;
+		if ( ! empty($cek_data)) :
+			$petugas_response   = $this->db->delete('petugas',['id_petugas' => $id_petugas]);
+			$kabupaten_response = $this->db->delete('petugas_kabupaten', ['petugas_id' => $id_petugas]);
 
-		if ($resp) :
-			$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert">
-				Akun berhasil dihapus
-				</div>');
-
-			redirect('Admin/PetugasController');
+			if ( $petugas_response && $kabupaten_response ) :
+				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert"> Akun berhasil dihapus </div>');
+			else :
+				$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"> Akun gagal dihapus! </div>');
+			endif;
 		else :
-			$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">
-				Akun gagal dihapus!
-				</div>');
-
-			redirect('Admin/PetugasController');
+			$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"> Data tidak ada </div>');
 		endif;
-	else :
-		$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">
-			Data tidak ada
-			</div>');
 
 		redirect('Admin/PetugasController');
-	endif;
+	}
 
-}
-
-public function edit($id)
-{
+	public function edit($id)
+	{
 		$id_petugas = htmlspecialchars($id); // id petugas
 		$cek_data   = $this->db->get_where('petugas',['id_petugas' => $id_petugas])->row_array();
 		$kabupaten  = $this->db->get_where('petugas_kabupaten', ['petugas_id' => $id_petugas])->row_array();
