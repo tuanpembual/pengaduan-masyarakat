@@ -29,11 +29,7 @@ class PetugasController extends CI_Controller {
 		$this->form_validation->set_rules('nik','NIK','trim|required|numeric');
 		$this->form_validation->set_rules('alamat','Alam','trim|required');
 		$this->form_validation->set_rules('telp','Telp','trim|required|numeric');
-		$this->form_validation->set_rules('level','Level','trim|required');
-
-		if (htmlspecialchars($this->input->post('level', TRUE)) == 'petugas') :
-			$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
-		endif;
+		$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE) :
 			$this->load->view('_part/backend_head', $data);
@@ -50,33 +46,26 @@ class PetugasController extends CI_Controller {
 				'nik_petugas'         => htmlspecialchars($this->input->post('nik',TRUE)),
 				'alamat'              => htmlspecialchars($this->input->post('alamat',TRUE)),
 				'telp'                => htmlspecialchars($this->input->post('telp',TRUE)),
-				'level'               => htmlspecialchars($this->input->post('level',TRUE)),
 				'foto_profile'        => 'user.png',
 			];
 
 			$response = $this->Petugas_m->create($params);
 
 			if ($response) :
-				if (htmlspecialchars($this->input->post('level', TRUE)) == 'petugas') :
-					$kabupaten = htmlspecialchars($this->input->post('kabupaten', TRUE));
-					$nama = htmlspecialchars($this->input->post('nama', TRUE));
+				$kabupaten = htmlspecialchars($this->input->post('kabupaten', TRUE));
+				$nama      = htmlspecialchars($this->input->post('nama', TRUE));
 
-					$petugas_kabupaten = $this->PetugasKabupaten_m->create([
-						'kabupaten_id' => $kabupaten,
-						'petugas_id' => $response,
-						'nama_petugaskab' => $nama,
-					]);
-				endif;
+				$petugas_kabupaten = $this->PetugasKabupaten_m->create([
+					'kabupaten_id'    => $kabupaten,
+					'petugas_id'      => $response,
+					'nama_petugaskab' => $nama,
+				]);
 
-				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert">
-					Buat akun petugas berhasil
-					</div>');
+				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert"> Buat akun petugas berhasil </div>');
 
 				redirect('Admin/PetugasController');
 			else :
-				$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">
-					Buat akun petugas berhasil!
-					</div>');
+				$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"> Buat akun petugas berhasil! </div>');
 
 				redirect('Admin/PetugasController');
 			endif;

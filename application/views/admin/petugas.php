@@ -42,18 +42,6 @@
       <label for="telp">Telp</label>
       <input type="text" class="form-control" id="telp" placeholder="" name="telp" value="<?= set_value('telp') ?>">
     </div>
-
-    <label for="">Level</label>
-    <div class="form-group">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="level" id="admin" value="admin">
-        <label class="form-check-label" for="admin">Admin</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="level" id="petugas" value="petugas" checked="">
-        <label class="form-check-label" for="petugas">Petugas</label>
-      </div>
-    </div>
     <div class="form-group">
         <label for="kabupaten"> Kabupaten </label>
         <select name="kabupaten" id="kabupaten" class="form-control"> 
@@ -62,7 +50,6 @@
             <option value="<?= $kabupaten["id_kabupaten"] ?>"> <?= $kabupaten["nama_kabupaten"] ?></option>
           <?php endforeach; ?>
         </select>
-        <small class="text-muted"> untuk level admin tidak perlu menginputkan kabupaten </small>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -82,7 +69,6 @@
       <th scope="col">Username</th>
       <th scope="col">Telp</th>
       <th scope="col">Kabupaten</th>
-      <th scope="col">Level</th>
       <th scope="col">Aksi</th>
     </tr>
   </thead>
@@ -101,14 +87,9 @@
             <?= $dp['kabupaten'] ?>
           <?php endif; ?>
         </td>
-        <td><?= $dp['level']; ?></td>
         <td>
-        <?php if ($dp['username_petugas'] == $this->session->userdata('username')) : ?>
-          <small>Tidak ada aksi</small>
-        <?php else : ?>
           <a href="<?= base_url('Admin/PetugasController/edit/'.$dp['id_petugas']) ?>" class="btn btn-info">Edit</a>
           <a href="<?= base_url('Admin/PetugasController/delete/'.$dp['id_petugas']) ?>" class="btn btn-warning">Hapus</a>
-        <?php endif; ?>
         </td>
       </tr>
     <?php endforeach; ?>
