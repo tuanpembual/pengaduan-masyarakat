@@ -9,9 +9,9 @@ class Masyarakat_m extends CI_Model {
 	public function create($data)
 	{
 		$data_masyarakat = array(
-			'nik' => $data['nik'],
-			'username' => $data['username'],
-			'password' => $data['password']
+			'nik_masyarakat' => $data['nik'],
+			'username'       => $data['username'],
+			'password'       => $data['password']
 		);
 
 		$save_masyarakat = $this->db->insert('masyarakat', $data_masyarakat);
@@ -22,10 +22,10 @@ class Masyarakat_m extends CI_Model {
 
 		$detail_masyarakat = array(
 			'nama_masyarakat' => $data['nama'],
-			'telp' => $data['telp'],
-			'alamat' => $data['alamat'],
-			'foto_profile' => $data['foto_profile'],
-			'nik' => $data['nik']
+			'telp'            => $data['telp'],
+			'alamat'          => $data['alamat'],
+			'foto_profile'    => $data['foto_profile'],
+			'nik_masyarakat'  => $data['nik']
 		);
 
 		$save_detail_masyarakat = $this->db->insert('masyarakat_detail', $detail_masyarakat);
