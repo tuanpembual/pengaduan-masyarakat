@@ -111,20 +111,20 @@ public function edit($id)
 {
 		$id_petugas = htmlspecialchars($id); // id petugas
 		$cek_data   = $this->db->get_where('petugas',['id_petugas' => $id_petugas])->row_array();
+		$kabupaten  = $this->db->get_where('petugas_kabupaten', ['petugas_id' => $id_petugas])->row_array();
 
 		if ( ! empty($cek_data)) :
 
 			$data['title']          = 'Edit Petugas';
 			$data['petugas']        = $cek_data;
+			$data['petugas_kab']    = $kabupaten['kabupaten_id'];
 			$data['data_kabupaten'] = $this->Kabupaten_m->get_all()->result_array();
 
 			$this->form_validation->set_rules('nama','Nama','trim|required|alpha_numeric_spaces');
 			$this->form_validation->set_rules('telp','Telp','trim|required|numeric');
-			$this->form_validation->set_rules('level','Level','trim|required');
-
-			if (htmlspecialchars($this->input->post('level', TRUE)) == 'petugas') :
-				$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
-			endif;
+			$this->form_validation->set_rules('alamat','Alam','trim|required');
+			$this->form_validation->set_rules('password','Password','trim|alpha_numeric_spaces|min_length[6]|max_length[15]');
+			$this->form_validation->set_rules('kabupaten', 'Kabupaten', 'trim|required');
 
 			if ($this->form_validation->run() == FALSE) :
 				$this->load->view('_part/backend_head', $data);
@@ -135,30 +135,25 @@ public function edit($id)
 				$this->load->view('_part/backend_foot');
 			else :
 
-			$params = [
-				'id'        => $id_petugas,
-				'nama'      => htmlspecialchars($this->input->post('nama', TRUE)),
-				'telp'      => htmlspecialchars($this->input->post('telp', TRUE)),
-				'level'     => htmlspecialchars($this->input->post('level', TRUE)),
-				'kabupaten' => htmlspecialchars($this->input->post('kabupaten', TRUE)),
-			];
+				$password = htmlspecialchars($this->input->post('password', TRUE)); 
+				$params   = [
+					'id'        => $id_petugas,
+					'nama'      => htmlspecialchars($this->input->post('nama', TRUE)),
+					'telp'      => htmlspecialchars($this->input->post('telp', TRUE)),
+					'alamat'    => htmlspecialchars($this->input->post('alamat', TRUE)),
+					'password'  => $password ? password_hash($password, PASSWORD_DEFAULT) : $cek_data['password_petugas'],
+					'kabupaten' => htmlspecialchars($this->input->post('kabupaten', TRUE)),
+				];
 
-			$resp = $this->Petugas_m->update($params);
+				$response = $this->Petugas_m->update($params);
 
-			if ($resp) :
-				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert">
-					Akun petugas berhasil di edit
-					</div>');
-
-				redirect('Admin/PetugasController');
-			else :
-				$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">
-					Akun petugas gagal di edit!
-					</div>');
+				if ($response) :
+					$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert"> Akun petugas berhasil di edit </div>');
+				else :
+					$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"> Akun petugas gagal di edit! </div>');
+				endif;
 
 				redirect('Admin/PetugasController');
-			endif;
-
 			endif;
 
 		else :
