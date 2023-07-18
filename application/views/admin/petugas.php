@@ -11,11 +11,16 @@
   <div class="row">
     <div class="col-lg-6">
 
-     <?= form_open('Admin/PetugasController'); ?>
+    <?= form_open('Admin/PetugasController'); ?>
 
-     <div class="form-group">
+    <div class="form-group">
       <label for="nama">Nama</label>
       <input type="text" class="form-control" id="nama" placeholder="" name="nama" value="<?= set_value('nama') ?>">
+    </div>
+
+    <div class="form-group">
+      <label for="nik">NIK</label>
+      <input type="text" class="form-control" id="nik" placeholder="" name="nik" value="<?= set_value('nik') ?>">
     </div>
 
     <div class="form-group">
@@ -27,6 +32,12 @@
       <label for="password">Passsword</label>
       <input type="password" class="form-control" id="password" name="password" placeholder="">
     </div>
+
+    <div class="form-group">
+      <label for="alamat">Alamat</label>
+      <input type="text" class="form-control" id="alamat" placeholder="" name="alamat" value="<?= set_value('alamat') ?>">
+    </div>
+
     <div class="form-group">
       <label for="telp">Telp</label>
       <input type="text" class="form-control" id="telp" placeholder="" name="telp" value="<?= set_value('telp') ?>">

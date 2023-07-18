@@ -12,13 +12,12 @@
   <div class="row">
     <div class="col-lg-6">
 
-     <?= form_open('Admin/PetugasController/edit/'.$petugas['id_petugas']); ?>
+    <?= form_open('Admin/PetugasController/edit/'.$petugas['id_petugas']); ?>
 
-     <div class="form-group">
+    <div class="form-group">
       <label for="nama">Nama</label>
       <input type="text" class="form-control" id="nama" placeholder="" name="nama" value="<?= $petugas['nama_petugas'] ?>">
     </div>
-
 
     <div class="form-group">
       <label for="telp">Telp</label>

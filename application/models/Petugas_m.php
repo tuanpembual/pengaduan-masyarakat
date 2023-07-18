@@ -9,7 +9,7 @@ class Petugas_m extends CI_Model {
 	public function create($data)
 	{
 		$this->db->insert($this->table, $data);
-        return $this->db->insert_id();
+		return $this->db->insert_id();
 	}	
 
 	public function get_petugas_by_username($username)
@@ -37,6 +37,8 @@ class Petugas_m extends CI_Model {
 		$petugas_kabupaten = $this->db->get_where('petugas_kabupaten', ['petugas_id' => $params['id']])->row_array();
 		$petugas_params    = [
 			'nama_petugas'  => $params['nama'],
+			'nik_petugas'   => $params['nik'],
+			'alamat'        => $params['alamat'],
 			'telp'          => $params['telp'],
 			'level'         => $params['level'],
 		];
@@ -56,7 +58,7 @@ class Petugas_m extends CI_Model {
 			'kabupaten_id' => $params['kabupaten'],
 		];
 
-		if ( $petugas_kabupaten ) $this->db->update('petugas_kabupaten', $kabupaten_params, ['id' => $petugas_kabupaten['id']]);
+		if ( $petugas_kabupaten ) $this->db->update('petugas_kabupaten', $kabupaten_params, ['petugas_id' => $petugas_kabupaten['id']]);
 		if ( !$petugas_kabupaten ) $this->db->insert('petugas_kabupaten', $kabupaten_params);
 	}
 

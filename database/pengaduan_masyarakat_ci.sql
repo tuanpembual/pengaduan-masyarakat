@@ -135,7 +135,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `petugas`;
 CREATE TABLE `petugas` (
-  `id_petugas` int(11) NOT NULL,
+  `id_petugas` int(11) NOT NULL AUTO_INCREMENT,
   `nama_petugas` varchar(35) NOT NULL,
   `nik_petugas` bigint(16) NOT NULL,
   `username_petugas` varchar(25) NOT NULL,
@@ -164,13 +164,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `petugas_kabupaten`;
 CREATE TABLE `petugas_kabupaten` (
-  `id_petugaskab` int(11) NOT NULL,
+  `id_petugaskab` int(11) NOT NULL AUTO_INCREMENT,
   `nama_petugaskab` varchar(255) NOT NULL,
   `petugas_id` int(11) NOT NULL,
   `kabupaten_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_petugaskab`),
   KEY `petugas_kabupaten_ibfk_1` (`petugas_id`),
   KEY `petugas_kabupaten_ibfk_2` (`kabupaten_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `petugas_kabupaten`
@@ -182,7 +183,7 @@ INSERT INTO `petugas_kabupaten` (`id_petugaskab`, `nama_petugaskab`, `petugas_id
 UNLOCK TABLES;
 
 --
--- Table structure for table `tanggapan`
+-- Table structure for table `tanggapan``
 --
 
 DROP TABLE IF EXISTS `tanggapan`;
