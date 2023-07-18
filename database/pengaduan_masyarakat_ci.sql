@@ -142,7 +142,6 @@ CREATE TABLE `petugas` (
   `password_petugas` varchar(225) NOT NULL,
   `telp` varchar(13) NOT NULL,
   `alamat` varchar(35) NOT NULL,
-  `level` enum('admin','petugas') NOT NULL,
   `foto_profile` varchar(225) NOT NULL,
   PRIMARY KEY (`id_petugas`),
   UNIQUE KEY `username_petugas` (`username_petugas`)

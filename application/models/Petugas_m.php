@@ -36,32 +36,24 @@ class Petugas_m extends CI_Model {
 	{
 		$petugas_kabupaten = $this->db->get_where('petugas_kabupaten', ['petugas_id' => $params['id']])->row_array();
 		$petugas_params    = [
-			'nama_petugas'  => $params['nama'],
-			'nik_petugas'   => $params['nik'],
-			'alamat'        => $params['alamat'],
-			'telp'          => $params['telp'],
-			'level'         => $params['level'],
+			'nama_petugas'     => $params['nama'],
+			'alamat'           => $params['alamat'],
+			'password_petugas' => $params['password'],
+			'telp'             => $params['telp'],
+		];
+		$kabupaten_params  = [
+			'petugas_id'      => $params['id'],
+			'kabupaten_id'    => $params['kabupaten'],
+			'nama_petugaskab' => $params['nama'],
 		];
 
-		if ($params['level'] == 'petugas') $this->update_petugas_kabupaten($params, $petugas_kabupaten);
-		if ($params['level'] == 'admin' && $petugas_kabupaten) $this->db->delete('petugas_kabupaten', ['petugas_id' => $params['id']]);
+		$petugas_result   = $this->db->update('petugas', $petugas_params, ['id_petugas' => $params['id']]);
+		$kabupaten_result = $this->db->update('petugas_kabupaten', $kabupaten_params, ['petugas_id' => $params['id']]); 
 
-		$result = $this->db->update('petugas', $petugas_params, ['id_petugas' => $params['id']]);
-
-		return $result;
+		if ( $petugas_result && $kabupaten_result ) return TRUE;
+		
+		return FALSE;
 	}
-
-	public function update_petugas_kabupaten($params, $petugas_kabupaten)
-	{
-		$kabupaten_params = [
-			'petugas_id'   => $params['id'],
-			'kabupaten_id' => $params['kabupaten'],
-		];
-
-		if ( $petugas_kabupaten ) $this->db->update('petugas_kabupaten', $kabupaten_params, ['petugas_id' => $petugas_kabupaten['id']]);
-		if ( !$petugas_kabupaten ) $this->db->insert('petugas_kabupaten', $kabupaten_params);
-	}
-
 }
 
 /* End of file Petugas_m.php */
