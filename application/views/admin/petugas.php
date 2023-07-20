@@ -81,15 +81,17 @@
         <td><?= $dp['username_petugas']; ?></td>
         <td><?= $dp['telp']; ?></td>
         <td>
-          <?php if ($dp['kabupaten'] == NULL) : ?>
-            Tidak Ada
-          <?php else: ?>
+          <?php if ($dp['kabupaten']) : ?>
             <?= $dp['kabupaten'] ?>
+          <?php else: ?>
+            
           <?php endif; ?>
         </td>
         <td>
-          <a href="<?= base_url('Admin/PetugasController/edit/'.$dp['id_petugas']) ?>" class="btn btn-info">Edit</a>
-          <a href="<?= base_url('Admin/PetugasController/delete/'.$dp['id_petugas']) ?>" class="btn btn-warning">Hapus</a>
+          <?php if ($dp['kabupaten']): ?>
+            <a href="<?= base_url('Admin/PetugasController/edit/'.$dp['id_petugas']) ?>" class="btn btn-info">Edit</a>
+            <a href="<?= base_url('Admin/PetugasController/delete/'.$dp['id_petugas']) ?>" class="btn btn-warning">Hapus</a>
+          <?php endif; ?>
         </td>
       </tr>
     <?php endforeach; ?>

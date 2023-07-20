@@ -8,7 +8,7 @@ class PetugasController extends CI_Controller {
 		parent::__construct();
 		//Load Dependencies
 		is_logged_in();
-		if ($this->session->userdata('level') != 'admin') :
+		if ($this->session->userdata('level') != 'superadmin') :
 			redirect('Auth/BlockedController');
 		endif;
 		$this->load->model('Petugas_m');
