@@ -19,22 +19,22 @@ class Petugas_m extends CI_Model {
 
 	public function get_petugas_kabupaten($id) 
 	{
-		return $this->db->get_where('petugas_kabupaten', ['petugas_id' => $id]);
+		return $this->db->get_where('petugas_kabupaten', ['id_petugas' => $id]);
 	}
 
 	public function get_all_petugas()
 	{
 		$this->db->select("petugas.*, kabupaten.nama_kabupaten as kabupaten");
 		$this->db->from($this->table);
-		$this->db->join("petugas_kabupaten", "petugas_kabupaten.petugas_id = petugas.id_petugas", "left");
-		$this->db->join("kabupaten", "kabupaten.id_kabupaten = petugas_kabupaten.kabupaten_id", "left");
+		$this->db->join("petugas_kabupaten", "petugas_kabupaten.id_petugas = petugas.id_petugas", "left");
+		$this->db->join("kabupaten", "kabupaten.id_kabupaten = petugas_kabupaten.id_kabupaten", "left");
 		
 		return $this->db->get();
 	}
 
 	public function update($params) 
 	{
-		$petugas_kabupaten = $this->db->get_where('petugas_kabupaten', ['petugas_id' => $params['id']])->row_array();
+		$petugas_kabupaten = $this->db->get_where('petugas_kabupaten', ['id_petugas' => $params['id']])->row_array();
 		$petugas_params    = [
 			'nama_petugas'     => $params['nama'],
 			'alamat'           => $params['alamat'],
@@ -42,13 +42,13 @@ class Petugas_m extends CI_Model {
 			'telp'             => $params['telp'],
 		];
 		$kabupaten_params  = [
-			'petugas_id'      => $params['id'],
-			'kabupaten_id'    => $params['kabupaten'],
+			'id_petugas'      => $params['id'],
+			'id_kabupaten'    => $params['kabupaten'],
 			'nama_petugaskab' => $params['nama'],
 		];
 
 		$petugas_result   = $this->db->update('petugas', $petugas_params, ['id_petugas' => $params['id']]);
-		$kabupaten_result = $this->db->update('petugas_kabupaten', $kabupaten_params, ['petugas_id' => $params['id']]); 
+		$kabupaten_result = $this->db->update('petugas_kabupaten', $kabupaten_params, ['id_petugas' => $params['id']]); 
 
 		if ( $petugas_result && $kabupaten_result ) return TRUE;
 		
