@@ -14,7 +14,7 @@
       </div>
     </a>
     
-    <?php if ($this->session->userdata('level') == 'admin' OR $this->session->userdata('level') == 'petugas') : ?>
+    <?php if ($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'kabupaten' || $this->session->userdata('level') == 'provinsi') : ?>
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
@@ -72,7 +72,7 @@
     <hr class="sidebar-divider">
 
     <?php // dropdown admin hanya oleh akun admin dan petugas ?>
-    <?php if ($this->session->userdata('level') == 'admin' OR $this->session->userdata('level') == 'petugas') : ?>
+    <?php if ($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'kabupaten' || $this->session->userdata('level') == 'provinsi') : ?>
     <!-- Heading -->
     <div class="sidebar-heading">
       Admin
@@ -87,7 +87,7 @@
       <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <?php // tambah petugas akses ?>
-          <?php if ($this->session->userdata('level') == 'petugas') : ?>
+          <?php if ($this->session->userdata('level') == 'provinsi' || $this->session->userdata('level') == 'kabupaten') : ?>
           <h6 class="collapse-header">Tanggapan:</h6>
           <a class="collapse-item" href="<?= base_url('Admin/TanggapanController'); ?>">Pengaduan Masuk</a>
           <a class="collapse-item" href="<?= base_url('Admin/TanggapanController/tanggapan_proses'); ?>">Pengaduan Proses</a>
@@ -98,12 +98,12 @@
           <?php // end tanggapan petugas akses ?>
 
           <?php // tambah petugas admin akses ?>
-          <?php if ($this->session->userdata('level') == 'admin') : ?>
-            <h6 class="collapse-header">Registrasi:</h6>
+          <h6 class="collapse-header">Registrasi:</h6>
+          <a class="collapse-item" href="<?= base_url('Admin/MasyarakatController'); ?>"> Konfirmasi Akun</a>
+          <?php if ($this->session->userdata('level') == 'superadmin') : ?>
             <a class="collapse-item" href="<?= base_url('Admin/PetugasController'); ?>">Tambah Petugas</a>
             <a class="collapse-item" href="<?= base_url('Admin/AdminController'); ?>">Tambah Admin</a>
-            <a class="collapse-item" href="<?= base_url('Admin/MasyarakatController'); ?>"> Konfirmasi Akun</a>
-          <?php endif; ?>
+            <?php endif; ?>
           <?php // end tambah petugas admin akses ?>
 
         </div>
@@ -114,7 +114,7 @@
   
 
   <?php // Cetak Laporan akses admin ?>
-  <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'petugas') : ?>
+  <?php if ($this->session->userdata('level') == 'superadmin' || $this->session->userdata('level') == 'kabupaten' || $this->session->userdata('level') == 'provinsi') : ?>
   <!-- Nav Item - Cetak Laporan -->
   <li class="nav-item">
     <a class="nav-link" href="<?= base_url('Admin/LaporanController'); ?>">

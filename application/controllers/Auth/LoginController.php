@@ -81,7 +81,7 @@ class LoginController extends CI_Controller {
 				// maka buat session userdata
 				$session = [
 					'username' => $petugas['username_petugas'],
-					'level'	   => 'petugas',
+					'level'	   => $petugas['level'],
 				];
 
 				$this->session->set_userdata($session);
@@ -102,7 +102,7 @@ class LoginController extends CI_Controller {
 			if (password_verify($password, $admin['password_admin'])) :
 				$session = [
 					'username' => $admin['username_admin'],
-					'level'    => 'admin'
+					'level'    => 'superadmin'
 				];
 
 				$this->session->set_userdata($session);

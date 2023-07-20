@@ -12,14 +12,14 @@
 
   <div class="card mb-3 col-lg-8">
     <div class="row no-gutters">
-      <?php if ($this->session->userdata('level') != 'admin'): ?>
+      <?php if ($this->session->userdata('level') != 'superadmin'): ?>
         <div class="col-md-4">
           <img src="<?= base_url('assets/profile/'.$user['foto_profile']) ?>" class="card-img" alt="img user">
         </div>
       <?php endif; ?>
       <div class="col-md-8">
         <div class="card-body">
-        <?php if ($this->session->userdata('level') != 'admin'): ?>
+        <?php if ($this->session->userdata('level') != 'superadmin'): ?>
           <h5 class="card-title">Nama : <?= $this->session->userdata('level') == NULL ? $user['nama_masyarakat'] : $user['nama_petugas']; ?></h5>
           <p class="card-text">NIK    : <?= $this->session->userdata('level') == NULL ? $user['nik_masyarakat'] : $user['nik_petugas']; ?></p>
           <p class="card-text">Alamat : <?= $user['alamat'] ?></p>
