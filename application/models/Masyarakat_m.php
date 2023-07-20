@@ -37,7 +37,7 @@ class Masyarakat_m extends CI_Model {
 	public function get_all() {
 		$this->db->select('masyarakat.nik_masyarakat, masyarakat_detail.nama_masyarakat, masyarakat.username, masyarakat_detail.telp, masyarakat.is_verified');
 		$this->db->from($this->table);
-		$this->db->join('masyarakat_detail', 'masyarakat_detail.nik_masyarakat = masyarakat.nik_masyarakat', 'inner');
+		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
 
 		return $this->db->get();
 	}

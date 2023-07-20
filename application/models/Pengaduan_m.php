@@ -18,7 +18,7 @@ class Pengaduan_m extends CI_Model
 		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp, kabupaten.nama_kabupaten as kabupaten');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
-		$this->db->join('masyarakat_detail', 'masyarakat_detail.nik_masyarakat = masyarakat.nik_masyarakat', 'inner');
+		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
 		$this->db->join('kabupaten', 'kabupaten.id_kabupaten = pengaduan.id_kabupaten');
 		$this->db->where('status', 'Diajukan');
 		if($id_kabupaten) $this->db->where('kabupaten.id_kabupaten', $id_kabupaten);
@@ -31,7 +31,7 @@ class Pengaduan_m extends CI_Model
 		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
-		$this->db->join('masyarakat_detail', 'masyarakat_detail.nik_masyarakat = masyarakat.nik_masyarakat', 'inner');
+		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
 		$this->db->where('pengaduan.nik_masyarakat', $nik);
 		return $this->db->get();
 	}
@@ -41,7 +41,7 @@ class Pengaduan_m extends CI_Model
 		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp, kabupaten.nama_kabupaten as kabupaten');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
-		$this->db->join('masyarakat_detail', 'masyarakat_detail.nik_masyarakat = masyarakat.nik_masyarakat', 'inner');
+		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
 		$this->db->join('kabupaten', 'kabupaten.id_kabupaten = pengaduan.id_kabupaten');
 		$this->db->where('status', 'Diproses');
 		if($id_kabupaten) $this->db->where('kabupaten.id_kabupaten', $id_kabupaten);
@@ -54,7 +54,7 @@ class Pengaduan_m extends CI_Model
 		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp, kabupaten.nama_kabupaten as kabupaten');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
-		$this->db->join('masyarakat_detail', 'masyarakat_detail.nik_masyarakat = masyarakat.nik_masyarakat', 'inner');
+		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
 		$this->db->join('kabupaten', 'kabupaten.id_kabupaten = pengaduan.id_kabupaten');
 		$this->db->where('status', 'Selesai');
 		if($id_kabupaten) $this->db->where('kabupaten.id_kabupaten', $id_kabupaten);
@@ -67,7 +67,7 @@ class Pengaduan_m extends CI_Model
 		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp, kabupaten.nama_kabupaten as kabupaten');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
-		$this->db->join('masyarakat_detail', 'masyarakat_detail.nik_masyarakat = masyarakat.nik_masyarakat', 'inner');
+		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
 		$this->db->join('kabupaten', 'kabupaten.id_kabupaten = pengaduan.id_kabupaten');
 		$this->db->where('status', 'Ditolak');
 		if($id_kabupaten) $this->db->where('kabupaten.id_kabupaten', $id_kabupaten);
