@@ -63,8 +63,8 @@ CREATE TABLE `masyarakat` (
 
 LOCK TABLES `masyarakat` WRITE;
 INSERT INTO `masyarakat` (`id_masyarakat`,`nik_masyarakat`, `username`, `password`, `is_verified`) VALUES
-(1, 12345678918, 'lululala', '$2y$10$J23NNXSjscUHCEHXDkSaTOvbm8gQYRVmMtdqCGPQyJuFeuMfS.hJG', 1),
-(2, 1212345678912354, 'masyarakat', '$2y$10$BqCVWU56ME/Y.MctVXBw7uI8w26d1gK/HY219JiQWe./ppfYVEeYS', 1);
+(1, 1212345678912354, 'masyarakat', '$2y$10$BqCVWU56ME/Y.MctVXBw7uI8w26d1gK/HY219JiQWe./ppfYVEeYS', 1);
+(2, 12345678918, 'lululala', '$2y$10$J23NNXSjscUHCEHXDkSaTOvbm8gQYRVmMtdqCGPQyJuFeuMfS.hJG', 1),
 UNLOCK TABLES;
 
 --
@@ -72,8 +72,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `masyarakat_detail`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `masyarakat_detail` (
   `id_masyarakat` int(11) NOT NULL,
   `nama_masyarakat` varchar(35) NOT NULL,
@@ -82,7 +80,6 @@ CREATE TABLE `masyarakat_detail` (
   `foto_profile` varchar(225) NOT NULL,
   KEY `id_masyarakat` (`id_masyarakat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `masyarakat_detail`
@@ -94,14 +91,11 @@ INSERT INTO `masyarakat_detail` (`id_masyarakat`, `nama_masyarakat`, `telp`, `al
 (2,'lulu','08111111111','PKG','user.png');
 UNLOCK TABLES;
 
-
 --
 -- Table structure for table `pengaduan`
 --
 
 DROP TABLE IF EXISTS `pengaduan`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pengaduan` (
   `id_pengaduan` bigint(16) NOT NULL AUTO_INCREMENT,
   `tgl_pengaduan` date NOT NULL,
