@@ -89,9 +89,9 @@ CREATE TABLE `masyarakat_detail` (
 --
 
 LOCK TABLES `masyarakat_detail` WRITE;
-INSERT INTO `masyarakat_detail` (`id_masyarakat`, `nama_masyarakat`, `telp`, `alamat`, `foto_profile`, `nik_masyarakat`) VALUES
-(1,'aisyah','08131111111','pangkal','user.png',1212345678912354),
-(2,'lulu','08111111111','PKG','user.png',12345678918);
+INSERT INTO `masyarakat_detail` (`id_masyarakat`, `nama_masyarakat`, `telp`, `alamat`, `foto_profile`) VALUES
+(1,'aisyah','08131111111','pangkal','user.png'),
+(2,'lulu','08111111111','PKG','user.png');
 UNLOCK TABLES;
 
 
