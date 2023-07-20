@@ -49,21 +49,22 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `masyarakat`;
 CREATE TABLE `masyarakat` (
+  `id_masyarakat` int(11) NOT NULL AUTO_INCREMENT,
   `nik_masyarakat` bigint(16) NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(225) NOT NULL,
   `is_verified` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`nik_masyarakat`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id_masyarakat`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `masyarakat`
 --
 
 LOCK TABLES `masyarakat` WRITE;
-INSERT INTO `masyarakat` (`nik_masyarakat`, `username`, `password`, `is_verified`) VALUES
-(12345678918, 'lululala', '$2y$10$J23NNXSjscUHCEHXDkSaTOvbm8gQYRVmMtdqCGPQyJuFeuMfS.hJG', 1),
-(1212345678912354, 'masyarakat', '$2y$10$BqCVWU56ME/Y.MctVXBw7uI8w26d1gK/HY219JiQWe./ppfYVEeYS', 1);
+INSERT INTO `masyarakat` (`id_masyarakat`,`nik_masyarakat`, `username`, `password`, `is_verified`) VALUES
+(1, 12345678918, 'lululala', '$2y$10$J23NNXSjscUHCEHXDkSaTOvbm8gQYRVmMtdqCGPQyJuFeuMfS.hJG', 1),
+(2, 1212345678912354, 'masyarakat', '$2y$10$BqCVWU56ME/Y.MctVXBw7uI8w26d1gK/HY219JiQWe./ppfYVEeYS', 1);
 UNLOCK TABLES;
 
 --
@@ -74,15 +75,13 @@ DROP TABLE IF EXISTS `masyarakat_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `masyarakat_detail` (
-  `id_masyarakat` int(11) NOT NULL AUTO_INCREMENT,
+  `id_masyarakat` int(11) NOT NULL,
   `nama_masyarakat` varchar(35) NOT NULL,
   `telp` varchar(13) NOT NULL,
   `alamat` varchar(35) NOT NULL,
   `foto_profile` varchar(225) NOT NULL,
-  `nik_masyarakat` bigint(20) NOT NULL,
-  PRIMARY KEY (`id_masyarakat`),
   KEY `id_masyarakat` (`id_masyarakat`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +116,7 @@ CREATE TABLE `pengaduan` (
   `status` enum('Diajukan','Diproses','Selesai','Ditolak') NOT NULL,
   `id_kabupaten` int(11) NOT NULL,
   PRIMARY KEY (`id_pengaduan`),
-  KEY `nik` (`nik`)
+  KEY `nik_masyarakat` (`nik_masyarakat`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
