@@ -15,17 +15,18 @@ class Masyarakat_m extends CI_Model {
 		);
 
 		$save_masyarakat = $this->db->insert('masyarakat', $data_masyarakat);
+		$id_masyarakat   = $this->db->insert_id();
 
 		if(!$save_masyarakat) {
 			return false;
 		}
 
 		$detail_masyarakat = array(
+			'id_masyarakat'   => $id_masyarakat,
 			'nama_masyarakat' => $data['nama'],
 			'telp'            => $data['telp'],
 			'alamat'          => $data['alamat'],
-			'foto_profile'    => $data['foto_profile'],
-			'nik_masyarakat'  => $data['nik']
+			'foto_profile'    => $data['foto_profile']
 		);
 
 		$save_detail_masyarakat = $this->db->insert('masyarakat_detail', $detail_masyarakat);
