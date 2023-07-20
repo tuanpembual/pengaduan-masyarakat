@@ -56,8 +56,8 @@ class PetugasController extends CI_Controller {
 				$nama      = htmlspecialchars($this->input->post('nama', TRUE));
 
 				$petugas_kabupaten = $this->PetugasKabupaten_m->create([
-					'kabupaten_id'    => $kabupaten,
-					'petugas_id'      => $response,
+					'id_kabupaten'    => $kabupaten,
+					'id_petugas'      => $response,
 					'nama_petugaskab' => $nama,
 				]);
 
@@ -80,7 +80,7 @@ class PetugasController extends CI_Controller {
 
 		if ( ! empty($cek_data)) :
 			$petugas_response   = $this->db->delete('petugas',['id_petugas' => $id_petugas]);
-			$kabupaten_response = $this->db->delete('petugas_kabupaten', ['petugas_id' => $id_petugas]);
+			$kabupaten_response = $this->db->delete('petugas_kabupaten', ['id_petugas' => $id_petugas]);
 
 			if ( $petugas_response && $kabupaten_response ) :
 				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert"> Akun berhasil dihapus </div>');
@@ -98,13 +98,13 @@ class PetugasController extends CI_Controller {
 	{
 		$id_petugas = htmlspecialchars($id); // id petugas
 		$cek_data   = $this->db->get_where('petugas',['id_petugas' => $id_petugas])->row_array();
-		$kabupaten  = $this->db->get_where('petugas_kabupaten', ['petugas_id' => $id_petugas])->row_array();
+		$kabupaten  = $this->db->get_where('petugas_kabupaten', ['id_petugas' => $id_petugas])->row_array();
 
 		if ( ! empty($cek_data)) :
 
 			$data['title']          = 'Edit Petugas';
 			$data['petugas']        = $cek_data;
-			$data['petugas_kab']    = $kabupaten['kabupaten_id'];
+			$data['petugas_kab']    = $kabupaten['id_kabupaten'];
 			$data['data_kabupaten'] = $this->Kabupaten_m->get_all()->result_array();
 
 			$this->form_validation->set_rules('nama','Nama','trim|required|alpha_numeric_spaces');
