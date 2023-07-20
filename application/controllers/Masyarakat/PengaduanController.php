@@ -45,7 +45,7 @@ class PengaduanController extends CI_Controller {
 
         $params = [
           'tgl_pengaduan'   => date('Y-m-d'),
-          'nik'             => $masyarakat['nik_masyarakat'],
+          'nik_masyarakat'  => $masyarakat['nik_masyarakat'],
           'hubungan'        => htmlspecialchars($this->input->post('hubungan',true)),
           'lokasi_kejadian' => htmlspecialchars($this->input->post('lokasi_kejadian',true)),
           'nama_korban'     => htmlspecialchars($this->input->post('nama_korban',true)),
