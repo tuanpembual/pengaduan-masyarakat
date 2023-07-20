@@ -158,11 +158,11 @@ DROP TABLE IF EXISTS `petugas_kabupaten`;
 CREATE TABLE `petugas_kabupaten` (
   `id_petugaskab` int(11) NOT NULL AUTO_INCREMENT,
   `nama_petugaskab` varchar(255) NOT NULL,
-  `petugas_id` int(11) NOT NULL,
-  `kabupaten_id` int(11) NOT NULL,
+  `id_petugas` int(11) NOT NULL,
+  `id_kabupaten` int(11) NOT NULL,
   PRIMARY KEY (`id_petugaskab`),
-  KEY `petugas_kabupaten_ibfk_1` (`petugas_id`),
-  KEY `petugas_kabupaten_ibfk_2` (`kabupaten_id`)
+  KEY `petugas_kabupaten_ibfk_1` (`id_petugas`),
+  KEY `petugas_kabupaten_ibfk_2` (`id_kabupaten`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -170,7 +170,7 @@ CREATE TABLE `petugas_kabupaten` (
 --
 
 LOCK TABLES `petugas_kabupaten` WRITE;
-INSERT INTO `petugas_kabupaten` (`id_petugaskab`, `nama_petugaskab`, `petugas_id`, `kabupaten_id`) VALUES
+INSERT INTO `petugas_kabupaten` (`id_petugaskab`, `nama_petugaskab`, `id_petugas`, `id_kabupaten`) VALUES
 (1, 'amini', 2, 7);
 UNLOCK TABLES;
 
