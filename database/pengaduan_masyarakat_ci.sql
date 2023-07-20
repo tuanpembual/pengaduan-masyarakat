@@ -63,8 +63,8 @@ CREATE TABLE `masyarakat` (
 
 LOCK TABLES `masyarakat` WRITE;
 INSERT INTO `masyarakat` (`id_masyarakat`,`nik_masyarakat`, `username`, `password`, `is_verified`) VALUES
-(1, 1212345678912354, 'masyarakat', '$2y$10$BqCVWU56ME/Y.MctVXBw7uI8w26d1gK/HY219JiQWe./ppfYVEeYS', 1);
-(2, 12345678918, 'lululala', '$2y$10$J23NNXSjscUHCEHXDkSaTOvbm8gQYRVmMtdqCGPQyJuFeuMfS.hJG', 1),
+(1, 1212345678912354, 'masyarakat', '$2y$10$BqCVWU56ME/Y.MctVXBw7uI8w26d1gK/HY219JiQWe./ppfYVEeYS', 1),
+(2, 12345678918, 'lululala', '$2y$10$J23NNXSjscUHCEHXDkSaTOvbm8gQYRVmMtdqCGPQyJuFeuMfS.hJG', 1);
 UNLOCK TABLES;
 
 --
