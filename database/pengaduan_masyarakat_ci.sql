@@ -106,7 +106,7 @@ DROP TABLE IF EXISTS `pengaduan`;
 CREATE TABLE `pengaduan` (
   `id_pengaduan` bigint(16) NOT NULL AUTO_INCREMENT,
   `tgl_pengaduan` date NOT NULL,
-  `nik` bigint(16) NOT NULL,
+  `nik_masyarakat` bigint(16) NOT NULL,
   `hubungan` varchar(35) NOT NULL,
   `nama_pelaku` varchar(35) NOT NULL,
   `lokasi_kejadian` varchar(35) NOT NULL,
