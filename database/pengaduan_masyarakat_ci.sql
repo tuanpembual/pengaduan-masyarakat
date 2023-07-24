@@ -26,7 +26,7 @@ CREATE TABLE `kabupaten` (
   `nama_kabupaten` varchar(255) NOT NULL,
   `ibukota` varchar(255) NOT NULL,
   PRIMARY KEY (`id_kabupaten`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kabupaten`
@@ -55,7 +55,7 @@ CREATE TABLE `masyarakat` (
   `password` varchar(225) NOT NULL,
   `is_verified` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_masyarakat`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `masyarakat`
@@ -79,7 +79,7 @@ CREATE TABLE `masyarakat_detail` (
   `alamat` varchar(35) NOT NULL,
   `foto_profile` varchar(225) NOT NULL,
   KEY `id_masyarakat` (`id_masyarakat`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `masyarakat_detail`
@@ -111,7 +111,7 @@ CREATE TABLE `pengaduan` (
   `id_kabupaten` int(11) NOT NULL,
   PRIMARY KEY (`id_pengaduan`),
   KEY `nik_masyarakat` (`nik_masyarakat`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengaduan`
@@ -119,7 +119,7 @@ CREATE TABLE `pengaduan` (
 
 LOCK TABLES `pengaduan` WRITE;
 INSERT INTO `pengaduan` VALUES 
-(1,'2023-07-17',1212345678912354,'sepupu','Parjo','Jalan Pramuka','Milo','Kekerasan Dalam Rumah Tangga','Tidak memberi nafkah','a6bc971dee560efe89d61a61cec5aa14.jpg','Diajukan',7);
+(1,'2023-07-17',1212345678912354,'sepupu','Parjo','Jalan Pramuka','Milo','Kekerasan Dalam Rumah Tangga','Tidak memberi nafkah','a6bc971dee560efe89d61a61cec5aa14.jpg','Diproses',7);
 UNLOCK TABLES;
 
 --
@@ -139,7 +139,7 @@ CREATE TABLE `petugas` (
   `foto_profile` varchar(225) NOT NULL,
   PRIMARY KEY (`id_petugas`),
   UNIQUE KEY `username_petugas` (`username_petugas`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `petugas`
@@ -160,11 +160,11 @@ CREATE TABLE `petugas_kabupaten` (
   `id_petugaskab` int(11) NOT NULL AUTO_INCREMENT,
   `nama_petugaskab` varchar(255) NOT NULL,
   `id_petugas` int(11) NOT NULL,
-  `id_kabupaten` int(11) NOT NULL,
+  `id_kabupaten` int(11),
   PRIMARY KEY (`id_petugaskab`),
   KEY `petugas_kabupaten_ibfk_1` (`id_petugas`),
   KEY `petugas_kabupaten_ibfk_2` (`id_kabupaten`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `petugas_kabupaten`
@@ -189,7 +189,7 @@ CREATE TABLE `tanggapan` (
   PRIMARY KEY (`id_tanggapan`),
   KEY `id_pengaduan` (`id_pengaduan`),
   KEY `id_petugaskab` (`id_petugaskab`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tanggapan`
@@ -211,7 +211,7 @@ CREATE TABLE `admin` (
   `username_admin` varchar(25) NOT NULL,
   `password_admin` varchar(255) NOT NULL,
   PRIMARY KEY (`id_admin`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 LOCK TABLES `admin` WRITE;
 INSERT INTO `admin` (`id_admin`, `nama_admin`, `username_admin`, `password_admin`) VALUES
