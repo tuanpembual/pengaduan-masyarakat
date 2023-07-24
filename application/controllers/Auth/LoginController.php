@@ -79,10 +79,17 @@ class LoginController extends CI_Controller {
 			if (password_verify($password, $petugas['password_petugas'])) :
 				// jika password benar
 				// maka buat session userdata
-				$session = [
-					'username' => $petugas['username_petugas'],
-					'level'	   => $petugas['level'],
-				];
+				if ($petugas['username_petugas'] == 'admin'):
+					$session = [
+						'username' => $petugas['username_petugas'],
+						'level'	   => 'provinsi',
+					];
+				else:
+					$session = [
+						'username' => $petugas['username_petugas'],
+						'level'	   => 'kabupaten',
+					];
+				endif;	
 
 				$this->session->set_userdata($session);
 				$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert"> Login berhasil! </div>');
