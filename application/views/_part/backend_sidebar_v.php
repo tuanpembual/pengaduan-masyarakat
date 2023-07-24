@@ -98,9 +98,9 @@
           <?php // end tanggapan petugas akses ?>
 
           <?php // tambah petugas admin akses ?>
-          <h6 class="collapse-header">Registrasi:</h6>
-          <a class="collapse-item" href="<?= base_url('Admin/MasyarakatController'); ?>"> Konfirmasi Akun</a>
           <?php if ($this->session->userdata('level') == 'superadmin') : ?>
+            <h6 class="collapse-header">Registrasi:</h6>
+            <a class="collapse-item" href="<?= base_url('Admin/MasyarakatController'); ?>"> Konfirmasi Akun</a>
             <a class="collapse-item" href="<?= base_url('Admin/PetugasController'); ?>">Tambah Petugas</a>
             <a class="collapse-item" href="<?= base_url('Admin/AdminController'); ?>">Tambah Admin</a>
             <?php endif; ?>

@@ -171,10 +171,10 @@ class TanggapanController extends CI_Controller {
 
 	public function tambah_tanggapan()
 	{
-		$id_pengaduan 	   = htmlspecialchars($this->input->post('id',true));
-		$cek_data          = $this->db->get_where('pengaduan',['id_pengaduan' => $id_pengaduan])->row_array();
-		$level 		  	   = $this->session->userdata('level');
-		$petugas_kabupaten = $this->id_kabupaten();
+		$id_pengaduan				= htmlspecialchars($this->input->post('id',true));
+		$cek_data						= $this->db->get_where('pengaduan',['id_pengaduan' => $id_pengaduan])->row_array();
+		$level 							= $this->session->userdata('level');
+		$petugas_kabupaten	= $this->id_kabupaten();
 
 		if ($petugas_kabupaten != $cek_data['id_kabupaten'] && $level != 'admin') redirect('Auth/BlockedController');
 

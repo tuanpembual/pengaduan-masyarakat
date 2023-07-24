@@ -40,6 +40,7 @@ class ChangePasswordController extends CI_Controller {
 		// cek akun di table masyarakat dan petugas berdasarkan username
 		$masyarakat = $this->db->get_where('masyarakat',['username' => $this->session->userdata('username')])->row_array();
 		$petugas = $this->db->get_where('petugas',['username_petugas' => $this->session->userdata('username')])->row_array();
+		$admin = $this->db->get_where('admin',['username_admin' => $this->session->userdata('username')])->row_array();
 
 		if ($masyarakat == TRUE) :
 
@@ -49,7 +50,7 @@ class ChangePasswordController extends CI_Controller {
 					'password' => password_hash($passwordBaru, PASSWORD_DEFAULT),
 				];
 
-				$resp = $this->db->update('masyarakat',$params,['nik' => $masyarakat['nik'] ]);
+				$resp = $this->db->update('masyarakat',$params,['id_masyarakat' => $masyarakat['id_masyarakat'] ]);
 				if ($resp) :
 					$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert">
 						Ganti password berhasil!
@@ -81,6 +82,37 @@ class ChangePasswordController extends CI_Controller {
 				];
 
 				$resp = $this->db->update('petugas',$params,['id_petugas' => $petugas['id_petugas'] ]);
+				if ($resp) :
+					$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert">
+						Ganti password berhasil!
+						</div>');
+
+					redirect('Auth/ChangePasswordController');
+				else :
+					$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">
+						Ganti password gagal!
+						</div>');
+
+					redirect('Auth/ChangePasswordController');
+				endif;
+
+			else :
+				$this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">
+					Password salah!
+					</div>');
+
+				redirect('Auth/ChangePasswordController');
+			endif;
+
+		elseif ($admin == TRUE) :
+
+			if (password_verify($passwordSekarang, $admin['password_admin'])) :
+
+				$params = [
+					'password_admin' => password_hash($passwordBaru, PASSWORD_DEFAULT),
+				];
+
+				$resp = $this->db->update('admin',$params,['id_admin' => $petugas['id_admin'] ]);
 				if ($resp) :
 					$this->session->set_flashdata('msg','<div class="alert alert-primary" role="alert">
 						Ganti password berhasil!
