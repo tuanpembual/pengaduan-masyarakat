@@ -260,7 +260,7 @@ class TanggapanController extends CI_Controller {
 		$id_petugas   = $this->Petugas_m->get_petugas_by_username($username)->row()->id_petugas;
 		$id_kabupaten = NULL;
 
-		if($level == 'petugas') $id_kabupaten =  $this->Petugas_m->get_petugas_kabupaten($id_petugas)->row()->id_kabupaten;
+		if($level == 'kabupaten') $id_kabupaten =  $this->Petugas_m->get_petugas_kabupaten($id_petugas)->row()->id_kabupaten;
 
 		return $id_kabupaten;
 	}
