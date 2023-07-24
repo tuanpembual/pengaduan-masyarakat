@@ -39,7 +39,7 @@ class ChangePasswordController extends CI_Controller {
 	{
 		// cek akun di table masyarakat dan petugas berdasarkan username
 		$masyarakat = $this->db->get_where('masyarakat',['username' => $this->session->userdata('username')])->row_array();
-		$petugas = $this->db->get_where('petugas',['username' => $this->session->userdata('username')])->row_array();
+		$petugas = $this->db->get_where('petugas',['username_petugas' => $this->session->userdata('username')])->row_array();
 
 		if ($masyarakat == TRUE) :
 
@@ -74,10 +74,10 @@ class ChangePasswordController extends CI_Controller {
 
 		elseif ($petugas == TRUE) :
 
-			if (password_verify($passwordSekarang, $petugas['password'])) :
+			if (password_verify($passwordSekarang, $petugas['password_petugas'])) :
 
 				$params = [
-					'password' => password_hash($passwordBaru, PASSWORD_DEFAULT),
+					'password_petugas' => password_hash($passwordBaru, PASSWORD_DEFAULT),
 				];
 
 				$resp = $this->db->update('petugas',$params,['id_petugas' => $petugas['id_petugas'] ]);
