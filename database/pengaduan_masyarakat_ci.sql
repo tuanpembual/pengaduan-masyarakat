@@ -135,7 +135,6 @@ CREATE TABLE `petugas` (
   `password_petugas` varchar(225) NOT NULL,
   `telp` varchar(13) NOT NULL,
   `alamat` varchar(35) NOT NULL,
-  `level` enum('provinsi','kabupaten') NOT NULL,
   `foto_profile` varchar(225) NOT NULL,
   PRIMARY KEY (`id_petugas`),
   UNIQUE KEY `username_petugas` (`username_petugas`)
@@ -146,9 +145,9 @@ CREATE TABLE `petugas` (
 --
 
 LOCK TABLES `petugas` WRITE;
-INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `nik_petugas`, `username_petugas`, `password_petugas`, `telp`, `alamat`, `level`, `foto_profile`) VALUES
-(1, 'putri', 3212345678912354, 'admin', '$2y$10$YlpZmz2Uq.RxG5bHvMjYjej5y2AYkEzr9JbDKGHe3sWbpFkVhkury', '08111111111', 'belitong','provinsi','user.png'),
-(2, 'amini', 3212345678912352, 'petugas', '$2y$10$SIUNsTMGwDOoXJ62kgoMueorXuuDenxdG0ZKRU1NUigM2Xby0bAmC', '081222222222', 'mentok','kabupaten', 'user.png');
+INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `nik_petugas`, `username_petugas`, `password_petugas`, `telp`, `alamat`, `foto_profile`) VALUES
+(1, 'putri', 3212345678912354, 'admin', '$2y$10$YlpZmz2Uq.RxG5bHvMjYjej5y2AYkEzr9JbDKGHe3sWbpFkVhkury', '08111111111', 'belitong','user.png'),
+(2, 'amini', 3212345678912352, 'petugas', '$2y$10$SIUNsTMGwDOoXJ62kgoMueorXuuDenxdG0ZKRU1NUigM2Xby0bAmC', '081222222222', 'mentok', 'user.png');
 UNLOCK TABLES;
 
 --
