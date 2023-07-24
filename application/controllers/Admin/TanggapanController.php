@@ -39,11 +39,9 @@ class TanggapanController extends CI_Controller {
 		$petugas_kabupaten = $this->id_kabupaten();
 		$level 			   = $this->session->userdata('level');
 
-		if ($petugas_kabupaten != $cek_data['id_kabupaten'] && $level != 'admin') redirect('Auth/BlockedController');
-
 		if ( ! empty($cek_data)) :
 
-			$data['title'] = 'Beri Tanggapan';
+			$data['title'] = 'Tanggapan';
 			$data['data_pengaduan'] = $this->Pengaduan_m->data_pengaduan_masyarakat_id(htmlspecialchars($id))->row_array();
 
 			$this->load->view('_part/backend_head', $data);

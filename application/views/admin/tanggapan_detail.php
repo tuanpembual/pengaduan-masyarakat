@@ -30,7 +30,7 @@
     </div>
   </div>
 
-
+<?php if ($this->session->userdata('level') == "kabupaten"): ?>
   <h1 class="h3 mb-4 text-gray-800">Masukan Tanggapan Anda</h1>
 
   <div class="row">
@@ -61,6 +61,7 @@
     <?= form_close(); ?>
   </div>
 </div>
+<?php endif; ?>
 
 <!-- /.container-fluid -->
 </div>
