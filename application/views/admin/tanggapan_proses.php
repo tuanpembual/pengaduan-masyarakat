@@ -14,12 +14,12 @@
 		<?php foreach ($data_pengaduan as $dp) : ?>
 			<div class="col-md-4">
 				<div class="card shadow mb-4" style="width: 18rem;">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary"><?= $dp['nama_masyarakat'] ?></h6>
-					</div>
 					<img src="<?= base_url() ?>assets/uploads/<?= $dp['foto'] ?>" class="card-img-top" alt="Thumbnail Pengaduan">
 					<div class="card-body">
+						<span class="text-dark">Pelapor :</span> <p><?= $dp['nama_masyarakat'] ?></p>
+						<span class="text-dark">Nama Pelaku :</span> <p><?= $dp['nama_pelaku'] ?></p>
 						<span class="text-dark">Laporan :</span> <p><?= $dp['isi_laporan'] ?></p>
+						<span class="text-dark">Nama Korban :</span> <p><?= $dp['nama_korban'] ?></p>
 						<span class="text-dark">Telp :</span> <p><?= $dp['telp'] ?></p>
 						<span class="text-dark">Tgl Pengaduan :</span> <p><?= $dp['tgl_pengaduan'] ?></p>
 						<span class="text-dark">Jenis Pengaduan: </span> <p><?= $dp['jenis_laporan'] ?></p>
