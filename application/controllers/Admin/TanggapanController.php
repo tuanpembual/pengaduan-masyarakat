@@ -253,7 +253,7 @@ class TanggapanController extends CI_Controller {
 		endif;
 	}
 
-	private function id_kabupaten() 
+	private function id_kabupaten()
 	{
 		$username     = $this->session->userdata('username');
 		$level 	  	  = $this->session->userdata('level');
