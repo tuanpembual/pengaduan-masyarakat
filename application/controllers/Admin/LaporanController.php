@@ -19,7 +19,7 @@ class LaporanController extends CI_Controller {
 	// List all your items
 	public function index()
 	{
-		$id_kabupaten    = $this->get_kabupaten_id();
+		$id_kabupaten    = $this->id_kabupaten();
 		$data['title']   = 'Cetak Laporan';
 		$data['laporan'] = $this->Pengaduan_m->laporan_pengaduan($id_kabupaten)->result_array();
 
@@ -33,26 +33,24 @@ class LaporanController extends CI_Controller {
 
 	public function generate_laporan()
 	{
-	
-	$id_kabupaten    = $this->get_kabupaten_id();
-	$data['laporan'] = $this->Pengaduan_m->laporan_pengaduan($id_kabupaten)->result_array();
+		$id_kabupaten    = $this->id_kabupaten();
+		$data['laporan'] = $this->Pengaduan_m->laporan_pengaduan($id_kabupaten)->result_array();
 
-    $this->load->library('pdf');
+		$this->load->library('pdf');
 
-    $this->pdf->setPaper('A4', 'landscape'); // opsional | default A4
-    $this->pdf->filename = "laporan-pengaduan.pdf"; // opsional | default is laporan.pdf
-    $this->pdf->load_view('laporan_pdf', $data);
+		$this->pdf->setPaper('A4', 'landscape'); // opsional | default A4
+		$this->pdf->filename = "laporan-pengaduan.pdf"; // opsional | default is laporan.pdf
+		$this->pdf->load_view('laporan_pdf', $data);
 	}
 
-	public function get_kabupaten_id() 
+	public function id_kabupaten()
 	{
-		$id_kabupaten  = NULL;
-		$petugas       = $this->Petugas_m->get_petugas_by_username($this->session->userdata('username'))->row_array();
-		$level_petugas = $this->session->userdata('level');
+		$username     = $this->session->userdata('username');
+		$level 	  	  = $this->session->userdata('level');
+		$id_petugas   = $this->Petugas_m->get_petugas_by_username($username)->row()->id_petugas;
+		$id_kabupaten = NULL;
 
-		if ($level_petugas == 'petugas') {
-			$id_kabupaten = $this->Petugas_m->get_petugas_kabupaten($petugas['id_petugas'])->row()->kabupaten_id;
-		}
+		if($level == 'kabupaten') $id_kabupaten =  $this->Petugas_m->get_petugas_kabupaten($id_petugas)->row()->id_kabupaten;
 
 		return $id_kabupaten;
 	}
