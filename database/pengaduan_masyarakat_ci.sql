@@ -73,7 +73,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `masyarakat_detail`;
 CREATE TABLE `masyarakat_detail` (
-  `id_masyarakat` int(11) NOT NULL,
+  `id_masyarakatdetail` int(11) NOT NULL,
   `nama_masyarakat` varchar(35) NOT NULL,
   `telp` varchar(13) NOT NULL,
   `alamat` varchar(35) NOT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE `masyarakat_detail` (
 --
 
 LOCK TABLES `masyarakat_detail` WRITE;
-INSERT INTO `masyarakat_detail` (`id_masyarakat`, `nama_masyarakat`, `telp`, `alamat`, `foto_profile`) VALUES
+INSERT INTO `masyarakat_detail` (`id_masyarakatdetail`, `nama_masyarakat`, `telp`, `alamat`, `foto_profile`) VALUES
 (1,'aisyah','08131111111','pangkal','user.png'),
 (2,'lulu','08111111111','PKG','user.png');
 UNLOCK TABLES;
