@@ -47,7 +47,8 @@ class LaporanController extends CI_Controller {
 	{
 		$username     = $this->session->userdata('username');
 		$level 	  	  = $this->session->userdata('level');
-		$id_petugas   = $this->Petugas_m->get_petugas_by_username($username)->row()->id_petugas;
+		$petugas      = $this->Petugas_m->get_petugas_by_username($username)->row();
+		$id_petugas   = $petugas ? $petugas->id_petugas : NULL;
 		$id_kabupaten = NULL;
 
 		if($level == 'kabupaten') $id_kabupaten =  $this->Petugas_m->get_petugas_kabupaten($id_petugas)->row()->id_kabupaten;
