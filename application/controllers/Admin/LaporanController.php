@@ -45,11 +45,11 @@ class LaporanController extends CI_Controller {
 
 	public function id_kabupaten()
 	{
-		$username     = $this->session->userdata('username');
-		$level 	  	  = $this->session->userdata('level');
-		$petugas      = $this->Petugas_m->get_petugas_by_username($username)->row();
-		$id_petugas   = $petugas ? $petugas->id_petugas : NULL;
-		$id_kabupaten = NULL;
+		$username			= $this->session->userdata('username');
+		$level				= $this->session->userdata('level');
+		$petugas			= $this->Petugas_m->get_petugas_by_username($username)->row();
+		$id_petugas		= $petugas ? $petugas->id_petugas : NULL;
+		$id_kabupaten	= NULL;
 
 		if($level == 'kabupaten') $id_kabupaten =  $this->Petugas_m->get_petugas_kabupaten($id_petugas)->row()->id_kabupaten;
 
