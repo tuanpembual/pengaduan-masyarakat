@@ -1,6 +1,6 @@
 <?php
 
-function getCurrentDate()
+function getCurrentDate($bulanTahun)
 {
   $month = date('Y-m-d');
 
@@ -19,7 +19,7 @@ function getCurrentDate()
     'Desember'
   );
 
-  $result = explode('-', $month);
+  $result = explode('-', $bulanTahun);
 
   return $bulan[(int)$result[1]] . ' ' . $result[0];
 }
@@ -79,7 +79,7 @@ function getCurrentDate()
         Kependudukan Pencatatan Sipil dan Pengendalian<br>
         Penduduk Keluarga Berencana Provinsi Kepulauan<br>
         Bangka Belitung</h4>
-        <h4 style="font-size: 15px;"><?= getCurrentDate(); ?></h4>
+        <h4 style="font-size: 15px;"><?= getCurrentDate($bulanTahun); ?></h4>
       </div>
 
       <table class="table mt-5">
