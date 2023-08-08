@@ -15,7 +15,7 @@ class Pengaduan_m extends CI_Model
 
 	public function data_pengaduan($id_kabupaten = NULL)
 	{
-		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp, kabupaten.nama_kabupaten as kabupaten');
+		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.no_hp, kabupaten.nama_kabupaten as kabupaten');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
 		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
@@ -28,7 +28,7 @@ class Pengaduan_m extends CI_Model
 
 	public function data_pengaduan_masyarakat_nik($nik)
 	{
-		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp');
+		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.no_hp');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
 		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
@@ -38,7 +38,7 @@ class Pengaduan_m extends CI_Model
 
 	public function data_pengaduan_masyarakat_proses($id_kabupaten = NULL)
 	{
-		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp, kabupaten.nama_kabupaten as kabupaten');
+		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.no_hp, kabupaten.nama_kabupaten as kabupaten');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
 		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
@@ -51,7 +51,7 @@ class Pengaduan_m extends CI_Model
 
 	public function data_pengaduan_masyarakat_selesai($id_kabupaten = NULL)
 	{
-		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp, kabupaten.nama_kabupaten as kabupaten');
+		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.no_hp, kabupaten.nama_kabupaten as kabupaten');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
 		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
@@ -64,7 +64,7 @@ class Pengaduan_m extends CI_Model
 
 	public function data_pengaduan_masyarakat_tolak($id_kabupaten = NULL)
 	{
-		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.telp, kabupaten.nama_kabupaten as kabupaten');
+		$this->db->select('pengaduan.*, masyarakat_detail.nama_masyarakat, masyarakat_detail.no_hp, kabupaten.nama_kabupaten as kabupaten');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat', 'masyarakat.nik_masyarakat = pengaduan.nik_masyarakat', 'inner');
 		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');

@@ -20,7 +20,7 @@
 						<span class="text-dark">Nama Pelaku :</span> <p><?= $dp['nama_pelaku'] ?></p>
 						<span class="text-dark">Laporan :</span> <p><?= $dp['isi_laporan'] ?></p>
 						<span class="text-dark">Nama Korban :</span> <p><?= $dp['nama_korban'] ?></p>
-						<span class="text-dark">Telp :</span> <p><?= $dp['telp'] ?></p>
+						<span class="text-dark">Telp :</span> <p><?= $dp['no_hp'] ?></p>
 						<span class="text-dark">Tgl Pengaduan :</span> <p><?= $dp['tgl_pengaduan'] ?></p>
 						<span class="text-dark">Jenis Pengaduan: </span> <p><?= $dp['jenis_laporan'] ?></p>
 						<span class="text-dark">Lokasi: </span> <p><?= $dp['lokasi_kejadian'] ?></p>

@@ -30,10 +30,33 @@
                 <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="telp" placeholder="No Telepon" name="telp">
+                <input type="text" class="form-control form-control-user" id="alamat" placeholder="Alamat" name="alamat">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="alamat" placeholder="Alamat" name="alamat">
+                <label for="tanggal_lahir"> Tanggal Lahir </label>
+                <input type="date" class="form-control form-control-user" id="tanggal_lahir" placeholder="Tanggal Lahir" name="TTL">
+              </div>
+              <div class="form-group">
+                 <label for="jenis_kelamin"> Jenis Kelamin </label></br>
+                 <input type="radio" id="jenis_kelamin" name="jenis_kelamin" value="laki-laki">
+                 <label for="html"> Laki - Laki </label>
+                 <input type="radio" id="jenis_kelamin" name="jenis_kelamin" value="perempuan">
+                 <label for="html"> Perempuan </label>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="pekerjaan" placeholder="Pekerjaan" name="pekerjaan">         
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="pendidikan_terakhir" placeholder="Pendidikan Terakhir" name="pendidikan_terakhir">         
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="agama" placeholder="Agama" name="agama">         
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="nomorhp" placeholder="No HP" name="no_hp">         
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control form-control-user" id="email" placeholder="Email" name="email">         
               </div>
               <button type="submit" class="btn btn-primary btn-user btn-block">Register</button>
             </form>

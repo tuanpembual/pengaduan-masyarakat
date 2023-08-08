@@ -22,11 +22,17 @@ class Masyarakat_m extends CI_Model {
 		}
 
 		$detail_masyarakat = array(
-			'id_masyarakat'   => $id_masyarakat,
-			'nama_masyarakat' => $data['nama'],
-			'telp'            => $data['telp'],
-			'alamat'          => $data['alamat'],
-			'foto_profile'    => $data['foto_profile']
+			'id_masyarakat'    => $id_masyarakat,
+			'nama_masyarakat'  => $data['nama'],
+			'TTL'              => $data['TTL'],
+			'jenis_kelamin'    => $data['jenis_kelamin'],
+			'pekerjaan'        => $data['pekerjaan'],
+			'pendidikan_terakhir' => $data['pendidikan_terakhir'],
+			'agama'            => $data['agama'],
+			'alamat'           => $data['alamat'],
+			'no_hp'            => $data['no_hp'],
+			'email'            => $data['email'],
+			'foto_profile'     => $data['foto_profile']
 		);
 
 		$save_detail_masyarakat = $this->db->insert('masyarakat_detail', $detail_masyarakat);
@@ -35,7 +41,7 @@ class Masyarakat_m extends CI_Model {
 	}
 
 	public function get_all() {
-		$this->db->select('masyarakat.nik_masyarakat, masyarakat_detail.nama_masyarakat, masyarakat.username, masyarakat_detail.telp, masyarakat.is_verified');
+		$this->db->select('masyarakat.nik_masyarakat, masyarakat_detail.nama_masyarakat, masyarakat.username, masyarakat_detail.no_hp, masyarakat.is_verified');
 		$this->db->from($this->table);
 		$this->db->join('masyarakat_detail', 'masyarakat_detail.id_masyarakat = masyarakat.id_masyarakat', 'inner');
 
