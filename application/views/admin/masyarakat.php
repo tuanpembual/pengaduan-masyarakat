@@ -14,6 +14,7 @@
       <th scope="col">Username</th>
       <th scope="col">No Telepon</th>
       <th scope="col">Status</th>
+      <th scope="col">Diverfikasi Oleh</th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +32,13 @@
         <?php else : ?>
           <a href="<?= base_url('Admin/MasyarakatController/status/'. $dm['nik_masyarakat'] ) ?>" class="btn btn-danger"> Nonaktif </a>
         <?php endif; ?>
+        </td>
+        <td>
+          <?php if ( $dm['is_verified'] ) : ?>
+            <?= $this->session->userdata('username') ?>
+          <?php else : ?>
+              -
+          <?php endif; ?>
         </td>
       </tr>
     <?php endforeach; ?>
