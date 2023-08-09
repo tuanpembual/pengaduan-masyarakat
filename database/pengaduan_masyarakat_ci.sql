@@ -75,8 +75,8 @@ DROP TABLE IF EXISTS `masyarakat_detail`;
 CREATE TABLE `masyarakat_detail` (
   `id_masyarakat` int(11) NOT NULL,
   `nama_masyarakat` varchar(35) NOT NULL,
-  `TTL` date(10) NOT NULL,
-  `jenis_kelamin`enum('Laki-laki','Perempuan') NOT NULL,
+  `TTL` date NOT NULL,
+  `jenis_kelamin` enum('Laki-laki','Perempuan') NOT NULL,
   `pekerjaan` varchar(35) NOT NULL,
   `pendidikan_terakhir` varchar(20) NOT NULL,
   `agama` varchar(20) NOT NULL,
