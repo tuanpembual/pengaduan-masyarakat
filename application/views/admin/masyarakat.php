@@ -25,7 +25,7 @@
         <td><?= $dm['nik_masyarakat']; ?></td>
         <td><?= $dm['nama_masyarakat']; ?></td>
         <td><?= $dm['username']; ?></td>
-        <td><?= $dm['telp']; ?></td>
+        <td><?= $dm['no_hp']; ?></td>
         <td>
         <?php if ($dm['is_verified']) : ?>
           <a href="<?= base_url('Admin/MasyarakatController/status/'. $dm['nik_masyarakat'] ) ?>" class="btn btn-info"> Aktif </a>
