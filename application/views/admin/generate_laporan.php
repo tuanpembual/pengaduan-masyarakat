@@ -4,6 +4,15 @@
   <!-- Page Heading -->
   <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
+  <form class="form-inline" action="LaporanController" method="POST">
+    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="bulan" class="sr-only">Bulan</label>
+      <input type="month" class="form-control" id="bulan" name="bulan">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Confirm Filter</button>
+  </form>
+
   <?php if ($laporan) : ?>
     <table class="table">
       <thead class="thead-dark">
@@ -38,7 +47,7 @@
       </tbody>
     </table>
 
-    <a target="_blank" href="<?= base_url('Admin/LaporanController/generate_laporan') ?>" class="btn btn-primary mt-2">Cetak dan Unduh</a>
+    <a target="_blank" href="<?= base_url('Admin/LaporanController/generate_laporan/' . $bulanTahun) ?>" class="btn btn-primary mt-2">Cetak dan Unduh</a>
 
   <?php else : ?>
     <p class="text-center">Belum ada data</p>

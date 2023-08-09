@@ -19,9 +19,16 @@ class LaporanController extends CI_Controller {
 	// List all your items
 	public function index()
 	{
-		$id_kabupaten    = $this->id_kabupaten();
-		$data['title']   = 'Cetak Laporan';
-		$data['laporan'] = $this->Pengaduan_m->laporan_pengaduan($id_kabupaten)->result_array();
+		$id_kabupaten       = $this->id_kabupaten();
+		$data['title']      = 'Cetak Laporan';
+		$data['bulanTahun'] = NULL;
+		$data['laporan']    = $this->Pengaduan_m->laporan_pengaduan($id_kabupaten)->result_array();
+
+		if ($this->input->post('bulan')) {
+			$bulanTahun         = explode("-", $this->input->post('bulan'));
+			$data['bulanTahun'] = $this->input->post('bulan');
+			$data['laporan']    = $this->Pengaduan_m->laporan_pengaduan_filter($id_kabupaten, $bulanTahun)->result_array();
+		}
 
 		$this->load->view('_part/backend_head', $data);
 		$this->load->view('_part/backend_sidebar_v');
@@ -31,10 +38,16 @@ class LaporanController extends CI_Controller {
 		$this->load->view('_part/backend_foot');
 	}
 
-	public function generate_laporan()
+	public function generate_laporan($bulanTahun)
 	{
 		$id_kabupaten    = $this->id_kabupaten();
 		$data['laporan'] = $this->Pengaduan_m->laporan_pengaduan($id_kabupaten)->result_array();
+
+		if ($bulanTahun) {
+			$splitBulanTahun    = explode("-", $bulanTahun);
+			$data['bulanTahun'] = $bulanTahun;
+			$data['laporan']    = $this->Pengaduan_m->laporan_pengaduan_filter($id_kabupaten, $splitBulanTahun)->result_array();
+		}
 
 		$this->load->library('pdf');
 

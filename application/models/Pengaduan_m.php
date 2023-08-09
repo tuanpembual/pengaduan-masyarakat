@@ -109,6 +109,24 @@ class Pengaduan_m extends CI_Model
 		// $this->db->join('petugas','petugas.id_petugas = tanggapan.id_petugas','left');
 		return $this->db->get();
 	}
+
+	public function laporan_pengaduan_filter($id_kabupaten, $bulan)
+	{
+		$this->db->select(
+			'pengaduan.nama_korban, pengaduan.tgl_pengaduan, pengaduan.jenis_laporan, pengaduan.lokasi_kejadian,
+			pengaduan.isi_laporan, pengaduan.status, tanggapan.tanggapan, kabupaten.nama_kabupaten as nama_kabupaten'
+		);
+		$this->db->from('pengaduan');
+		$this->db->join('tanggapan', 'tanggapan.id_pengaduan = pengaduan.id_pengaduan', 'left');
+		$this->db->join('kabupaten', 'kabupaten.id_kabupaten = pengaduan.id_kabupaten');
+		if ($id_kabupaten) $this->db->where('kabupaten.id_kabupaten', $id_kabupaten);
+		if ($bulan) $this->db->where("MONTH(tgl_pengaduan) =", $bulan[1]);
+		if ($bulan) $this->db->where("YEAR(tgl_pengaduan) =", $bulan[0]);
+		
+		// $this->db->join('masyarakat','masyarakat.nik = pengaduan.nik','left');
+		// $this->db->join('petugas','petugas.id_petugas = tanggapan.id_petugas','left');
+		return $this->db->get();
+	}
 }
 
 /* End of file Pengaduan_m.php */
