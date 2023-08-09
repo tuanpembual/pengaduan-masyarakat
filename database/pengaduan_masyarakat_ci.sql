@@ -75,8 +75,14 @@ DROP TABLE IF EXISTS `masyarakat_detail`;
 CREATE TABLE `masyarakat_detail` (
   `id_masyarakat` int(11) NOT NULL,
   `nama_masyarakat` varchar(35) NOT NULL,
-  `telp` varchar(13) NOT NULL,
+  `TTL` date(10) NOT NULL,
+  `jenis_kelamin`enum('Laki-laki','Perempuan') NOT NULL,
+  `pekerjaan` varchar(35) NOT NULL,
+  `pendidikan_terakhir` varchar(20) NOT NULL,
+  `agama` varchar(20) NOT NULL,
   `alamat` varchar(35) NOT NULL,
+  `no_hp` varchar(13) NOT NULL,
+  `email` varchar(35) NOT NULL,
   `foto_profile` varchar(225) NOT NULL,
   KEY `id_masyarakat` (`id_masyarakat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -86,9 +92,9 @@ CREATE TABLE `masyarakat_detail` (
 --
 
 LOCK TABLES `masyarakat_detail` WRITE;
-INSERT INTO `masyarakat_detail` (`id_masyarakat`, `nama_masyarakat`, `telp`, `alamat`, `foto_profile`) VALUES
-(1,'aisyah','08131111111','pangkal','user.png'),
-(2,'lulu','08111111111','PKG','user.png');
+INSERT INTO `masyarakat_detail` (`id_masyarakat`, `nama_masyarakat`, `TTL`, `jenis_kelamin`, `pekerjaan`, `pendidikan_terakhir`, `agama`, `alamat`, `no_hp`, `email`, `foto_profile`) VALUES
+(1,'aisyah','1994-07-18','Perempuan','PNS','S1','Islam','pangkal','08131111111','aisyah@example.com','user.png'),
+(2,'lulu','1994-07-18','Perempuan','PNS','S1','Islam','pangkal','08111111111','lulu@example.com','user.png');
 UNLOCK TABLES;
 
 --
